@@ -18,42 +18,39 @@ public class SupervisorTest {
 
     @Before
     public void setUp() {
-        throw new RuntimeException("not implemented yet!");
+
+        throw new RuntimeException("not implemented yet!, You should implement the driver, build the setup an check all tests!");
     }
 
     @Test
-    public void openCashRegisterWithValidSupervisorRole() {
+    public void userOpenCashRegisterWithValidSupervisorRole() {
         String supervisorUsername = "supervisor";
         String supervisorPassword = "123456";
         testDriver.open(supervisorUsername, supervisorPassword);
         assertTrue("La caja no esta abierta por el supervisor", testDriver.isOpen());
     }
 
-    @Test(expected = InvalidOperationException.class)
-    public void openCashRegisterWithInvalidSupervisorRole() {
+    @Test
+    public void userOpenCashRegisterWithInvalidSupervisorRole() {
         String supervisorUsername = "supervisor";
         String supervisorPassword = "badpass";
         testDriver.open(supervisorUsername, supervisorPassword);
-        assertTrue("La caja no esta abierta por el supervisor", testDriver.isOpen());
+        assertFalse("La caja no esta abierta por el supervisor", testDriver.isOpen());
     }
 
-
     @Test
-    public void closeCashRegister() {
+    public void supervisorCloseAClosedCashRegister() {
         testDriver.close();
         assertFalse("La caja no pudo cerrarse", testDriver.isOpen());
     }
 
-    @Test
-    public void loginOperatorInCashRegister() {
+
+    @Test(expected = InvalidOperationException.class)
+    public void supervisorInitSaleInCashRegister() {
         String supervisorUsername = "supervisor";
         String supervisorPassword = "123456";
         testDriver.open(supervisorUsername, supervisorPassword);
-        assertTrue("La caja no esta abierta por el supervisor", testDriver.isOpen());
-        String username = "cajero";
-        String password = "123456";
-        testDriver.login(username, supervisorUsername);
-        assertTrue("La caja no esta logeuada por el operador", testDriver.isUserSignedIn());
+        testDriver.initSale();
     }
-
+    
 }
