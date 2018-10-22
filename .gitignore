@@ -1,0 +1,10 @@
+build/
+out/
+.gradle/
+.idea/
+*.iml
+.classpath
+.project
+org.eclipse.jdt.core.prefs
+/bin/
+
