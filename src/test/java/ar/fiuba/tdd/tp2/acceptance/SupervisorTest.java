@@ -48,16 +48,6 @@ public class SupervisorTest {
         assertFalse("La caja no debe estar abierta con invalidas credenciales", testDriver.isOpen());
     }
 
-    @Test
-    public void supervisorCloseAClosedCashRegister() {
-        String supervisorUsername = "supervisor";
-        String supervisorPassword = "123456";
-        testDriver.open(supervisorUsername, supervisorPassword);
-        assertTrue("La caja no esta abierta por el supervisor", testDriver.isOpen());
-        testDriver.close(supervisorUsername, supervisorPassword);
-        assertFalse("La caja no pudo cerrarse", testDriver.isOpen());
-    }
-
 
     @Test(expected = InvalidOperationException.class)
     public void supervisorInitSaleInCashRegister() {
