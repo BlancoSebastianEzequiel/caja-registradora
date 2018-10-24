@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp2.acceptance;
 
 import ar.fiuba.tdd.tp2.acceptance.driver.CashRegisterTestDriver;
 import ar.fiuba.tdd.tp2.acceptance.driver.InvalidOperationException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,8 +19,17 @@ public class SupervisorTest {
 
     @Before
     public void setUp() {
-
         throw new RuntimeException("not implemented yet!, You should implement the driver, build the setup an check all tests!");
+    }
+
+    @After
+    public void tearDown() {
+        String supervisorUsername = "supervisor";
+        String supervisorPassword = "123456";
+        if(testDriver.isUserSignedIn())
+            testDriver.logout();
+        if(testDriver.isOpen())
+            testDriver.close(supervisorUsername, supervisorPassword);
     }
 
     @Test
@@ -31,7 +41,7 @@ public class SupervisorTest {
     }
 
     @Test
-    public void userOpenCashRegisterWithInvalidSupervisorRole() {
+    public void userOpenCashRegisterWithInvalidSupervisorUser() {
         String supervisorUsername = "supervisor";
         String supervisorPassword = "badpass";
         testDriver.open(supervisorUsername, supervisorPassword);
@@ -40,17 +50,10 @@ public class SupervisorTest {
 
     @Test
     public void supervisorCloseAClosedCashRegister() {
-        testDriver.close();
+        String supervisorUsername = "supervisor";
+        String supervisorPassword = "123456";
+        testDriver.close(supervisorUsername, supervisorPassword);
         assertFalse("La caja no pudo cerrarse", testDriver.isOpen());
     }
 
-
-    @Test(expected = InvalidOperationException.class)
-    public void supervisorInitSaleInCashRegister() {
-        String supervisorUsername = "supervisor";
-        String supervisorPassword = "123456";
-        testDriver.open(supervisorUsername, supervisorPassword);
-        testDriver.initSale();
-    }
-    
 }

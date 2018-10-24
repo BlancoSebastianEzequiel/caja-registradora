@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp2.acceptance;
 
 import ar.fiuba.tdd.tp2.acceptance.driver.CashRegisterTestDriver;
 import ar.fiuba.tdd.tp2.acceptance.driver.InvalidOperationException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +18,16 @@ public class OperatorTest {
         throw new RuntimeException("not implemented yet!");
     }
 
+    @After
+    public void tearDown() {
+        String supervisorUsername = "supervisor";
+        String supervisorPassword = "123456";
+        if(testDriver.isUserSignedIn())
+            testDriver.logout();
+        if(testDriver.isOpen())
+            testDriver.close(supervisorUsername, supervisorPassword);
+    }
+
     /**
      * An operator can login in an open cash register
      */
@@ -28,8 +39,8 @@ public class OperatorTest {
         assertTrue("La caja no esta abierta por el supervisor", testDriver.isOpen());
         String username = "cajero";
         String password = "123456";
-        testDriver.login(username, supervisorUsername);
-        assertTrue("La caja no esta logeuada por el operador", testDriver.isUserSignedIn());
+        testDriver.login(username, password);
+        assertTrue("La caja no esta logueada por el operador", testDriver.isUserSignedIn());
     }
 
 
@@ -43,7 +54,6 @@ public class OperatorTest {
         testDriver.open(username, password);
     }
 
-
     /**
      * An operator cant login in a closed cash register
      */
@@ -53,6 +63,5 @@ public class OperatorTest {
         String password = "123456";
         testDriver.login(username, password);
     }
-
 
 }

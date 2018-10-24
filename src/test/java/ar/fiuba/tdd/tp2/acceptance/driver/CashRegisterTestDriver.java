@@ -15,13 +15,15 @@ public interface CashRegisterTestDriver {
 
     Boolean isUserSignedIn();
 
-    void close();
+    void close(String username, String password);
 
     void login(String username, String password);
 
     void logout();
 
     void initSale();
+
+    void finishSale();
 
     void addItemToCurrentSale(String item);
 
