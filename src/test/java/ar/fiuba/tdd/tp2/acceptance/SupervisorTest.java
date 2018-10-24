@@ -40,6 +40,10 @@ public class SupervisorTest {
 
     @Test
     public void supervisorCloseAClosedCashRegister() {
+        String supervisorUsername = "supervisor";
+        String supervisorPassword = "123456";
+        testDriver.open(supervisorUsername, supervisorPassword);
+        assertTrue("La caja no esta abierta por el supervisor", testDriver.isOpen());
         testDriver.close();
         assertFalse("La caja no pudo cerrarse", testDriver.isOpen());
     }
@@ -52,5 +56,5 @@ public class SupervisorTest {
         testDriver.open(supervisorUsername, supervisorPassword);
         testDriver.initSale();
     }
-    
+
 }
