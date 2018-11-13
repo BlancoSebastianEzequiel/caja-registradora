@@ -6,7 +6,7 @@ public final class Close extends CashRegisterState {
 	public void open(CashRegister aCashRegister, User user) {
 		// TODO Auto-generated method stub
 		user.canOpen();
-		aCashRegister.changeState(this);
+		aCashRegister.changeState(new Open());
 	}
 
 	@Override
@@ -18,7 +18,6 @@ public final class Close extends CashRegisterState {
 	@Override
 	public void login(User anUser) {
 		throw new InvalidCashRegisterOperationException();
-		
 	}
 
 	@Override

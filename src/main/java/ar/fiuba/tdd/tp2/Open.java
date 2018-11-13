@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp2;
 
 public final class Open extends CashRegisterState {
 	
-	private Boolean isSignedIn;
+	private Boolean isSignedIn = false;
 	
 	@Override
 	public void open(CashRegister aCashRegister, User user) {
@@ -14,12 +14,13 @@ public final class Open extends CashRegisterState {
 	public void close(CashRegister aCashRegister, User user) {
 		// TODO Auto-generated method stub
 		user.canClose();
-		aCashRegister.changeState(this);
+		aCashRegister.changeState(new Close());
 	}
 
 	@Override
 	public void login(User anUser) {
 		anUser.canLogIn();
+		this.isSignedIn = true;
 		// TODO Auto-generated method stub
 	}
 
