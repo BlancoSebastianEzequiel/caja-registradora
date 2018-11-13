@@ -1,5 +1,4 @@
 package ar.fiuba.tdd.tp2;
-import ar.fiuba.tdd.tp2.acceptance.driver.InvalidOperationException;
 
 public class Cashier extends Role {
 
