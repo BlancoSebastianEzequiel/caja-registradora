@@ -3,14 +3,10 @@ package ar.fiuba.tdd.tp2.acceptance;
 import ar.fiuba.tdd.tp2.Cashier;
 import ar.fiuba.tdd.tp2.Supervisor;
 import ar.fiuba.tdd.tp2.User;
-import ar.fiuba.tdd.tp2.acceptance.driver.CashRegisterTestDriver;
-import ar.fiuba.tdd.tp2.acceptance.driver.InvalidOperationException;
+import ar.fiuba.tdd.tp2.InvalidOperationException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 
 public class UserTest {

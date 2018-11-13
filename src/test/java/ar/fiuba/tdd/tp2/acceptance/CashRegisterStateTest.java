@@ -8,14 +8,10 @@ import ar.fiuba.tdd.tp2.CashRegisterState;
 import ar.fiuba.tdd.tp2.Open;
 import ar.fiuba.tdd.tp2.Close;
 import ar.fiuba.tdd.tp2.InvalidCashRegisterOperationException;
-import ar.fiuba.tdd.tp2.acceptance.driver.CashRegisterTestDriver;
-import ar.fiuba.tdd.tp2.acceptance.driver.InvalidOperationException;
+import ar.fiuba.tdd.tp2.InvalidOperationException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 
 public class CashRegisterStateTest {
