@@ -5,10 +5,10 @@ public class CashRegister {
 	private CashRegisterState state;
 	
     public CashRegister() {
-    	this.state = new Close();
+        this.state = new Close();
     }
     
     public void changeState(CashRegisterState newState) {
-    	this.state = newState;
+        this.state = newState;
     }
 }
