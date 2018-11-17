@@ -1,0 +1,32 @@
+plugins {
+    id 'de.aaschmid.cpd' version '0.4'
+}
+
+group 'ar.fiuba.tdd'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
+apply plugin: 'maven'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: "jacoco"
+apply from: 'gradle/fatjar.gradle'
+apply from: 'gradle/quality.gradle'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    maven {
+        url "http://nexus-tecnicas7510.rhcloud.com/nexus/content/repositories/third-party"
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+}
