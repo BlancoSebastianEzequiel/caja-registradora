@@ -9,9 +9,12 @@ import ar.fiuba.tdd.tp2.Open;
 import ar.fiuba.tdd.tp2.Close;
 import ar.fiuba.tdd.tp2.InvalidCashRegisterOperationException;
 import ar.fiuba.tdd.tp2.InvalidOperationException;
+import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 
 public class CashRegisterStateTest {
@@ -22,8 +25,8 @@ public class CashRegisterStateTest {
 	private CashRegister cashRegister; 
 
     @Before
-    public void setUp() {
-    	this.cashRegister = new CashRegister();
+    public void setUp() throws IOException, ParseException {
+    	this.cashRegister = new CashRegister("users.json", "offers.json", "rules.json");
     	this.open = new Open();
     	this.close = new Close();
     	this.supervisor = new User("supervisor", "123456", new Supervisor());

@@ -1,0 +1,17 @@
+[
+    {
+        "username": "supervisor",
+        "password": "123456",
+        "role": "supervisor"
+    },
+    {
+        "username": "operator",
+        "password": "123456",
+        "role": "cashier"
+    },
+    {
+        "username": "cajero",
+        "password": "123456",
+        "role": "cashier"
+    }
+]

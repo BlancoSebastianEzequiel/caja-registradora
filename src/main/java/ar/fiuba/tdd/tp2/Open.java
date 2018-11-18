@@ -21,13 +21,12 @@ public final class Open extends CashRegisterState {
 	public void login(User anUser) {
 		anUser.canLogIn();
 		this.isSignedIn = true;
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void logout(User anUser) {
 		anUser.canLogOut();
-		// TODO Auto-generated method stub
+		this.isSignedIn = false;
 	}
 
 	@Override
