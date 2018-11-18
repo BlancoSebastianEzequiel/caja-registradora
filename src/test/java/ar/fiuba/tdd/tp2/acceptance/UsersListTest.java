@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 public class UsersListTest {
-    Users users;
+    private Users users;
 
     @Before
     public void setUp() throws IOException, ParseException {
