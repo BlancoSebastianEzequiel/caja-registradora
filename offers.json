@@ -1,0 +1,28 @@
+[
+  {
+    "description": "10% de descuento en lácteos durante Septiembre",
+    "code": "OF0001",
+    "rule": {
+    "type": "AND",
+    "code": "LACTEO_SEPTIEMBRE",
+    "rules": ["PRODUCTO_LACTEO", "MES_SEPTIEMBRE"]
+    },
+    "discount": {
+    "type": "PERCENTAGE",
+    "value": "10"
+    }
+  },
+  {
+    "description": "15% de descuento pagando con credito o debito, excepto banco CAPRO",
+    "code": "OF0002",
+    "rule": {
+      "type": "AND",
+      "code": "PAGO_TARJETAS_NO_CAPRO",
+      "rule": ["PAGO_TARJETA_DEBITO_CREDITO", "NO_CAPRO"]
+    },
+    "discount": {
+      "type": "PERCENTAGE",
+      "value": "15"
+    }
+  }
+]
