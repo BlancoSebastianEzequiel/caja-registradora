@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.table.*;
 
 import ar.fiuba.tdd.tp2.controller.BackButtonListener;
+import ar.fiuba.tdd.tp2.controller.OpenShopListener;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -51,9 +52,10 @@ public class ShoppingListCashierPanel extends Panel{
 
         textTitle.setFont(textTitle.getFont().deriveFont(22.0f));    
         JScrollPane sp = new JScrollPane(shoppingList);
-
         sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(30,0,40,0), new EtchedBorder()));
         sp.getViewport().setBackground(Color.WHITE);
+
+        botonOpenShop.addActionListener(new OpenShopListener(this.window, sp));
 
         GridBagConstraints components = new GridBagConstraints();
         components.gridx = 0;

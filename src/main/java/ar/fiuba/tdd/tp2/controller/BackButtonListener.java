@@ -21,6 +21,7 @@ public class BackButtonListener implements ActionListener {
         this.window.getContentPane().removeAll();
         this.window.getContentPane().add(panel.getPanel());
         this.window.revalidate();
+        this.window.setEnabled(true);
 	}
 
 }

@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.table.*;
+
+import ar.fiuba.tdd.tp2.controller.AddProductDialogListener;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -15,11 +18,13 @@ public class ProductListPanel extends Panel{
         panel.setLayout(new GridBagLayout());
         panel.setBorder(new EmptyBorder(40,30,30,30));
 
+        JLabel priceText = new JLabel("Precio total:   $0.00");
+
         JLabel textTitle = new JLabel("Lista de productos");
         JButton botonCancelarCompra = new JButton("Cancelar compra");
         JButton botonCerrarCompra = new JButton("Cerrar compra");
         JButton botonAgregarProducto = new JButton("Agregar producto");
-        String colNames[] = {"Producto","Código","Cantidad","Precio"};
+        String colNames[] = {"Producto","Precio"};
         String data[][] = {};
         
         //Avoid for the table is editable
@@ -48,8 +53,12 @@ public class ProductListPanel extends Panel{
         textTitle.setFont(textTitle.getFont().deriveFont(22.0f));
         JScrollPane sp = new JScrollPane(productList);
 
-        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(30,0,40,0), new EtchedBorder()));
+        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(30,0,5,0), new EtchedBorder()));
         sp.getViewport().setBackground(Color.WHITE);
+
+        priceText.setBorder(new EmptyBorder(0,0,30,0));
+
+        botonAgregarProducto.addActionListener(new AddProductDialogListener(this.window, productList, priceText));
 
         GridBagConstraints components = new GridBagConstraints();
         components.gridx = 0;
@@ -59,6 +68,14 @@ public class ProductListPanel extends Panel{
         components.weightx = 1.0;
         components.anchor = GridBagConstraints.WEST;
         panel.add(textTitle, components);
+        
+        components.gridx = 0;
+        components.gridy = 2;
+        components.gridwidth = 3;
+        components.gridheight = 1;
+        components.weightx = 1.0;
+        components.anchor = GridBagConstraints.EAST;
+        panel.add(priceText, components);
         components.anchor = GridBagConstraints.CENTER;
 
         components.gridx = 0;
@@ -72,21 +89,21 @@ public class ProductListPanel extends Panel{
         components.fill = GridBagConstraints.NONE;
 
         components.gridx = 0;
-        components.gridy = 2;
+        components.gridy = 3;
         components.gridwidth = 1;
         components.gridheight = 1;
         components.anchor = GridBagConstraints.WEST;
         panel.add(botonAgregarProducto, components);
 
         components.gridx = 1;
-        components.gridy = 2;
+        components.gridy = 3;
         components.gridwidth = 1;
         components.gridheight = 1;
         components.anchor = GridBagConstraints.CENTER;
         panel.add(botonCerrarCompra, components);
 
         components.gridx = 2;
-        components.gridy = 2;
+        components.gridy = 3;
         components.gridwidth = 1;
         components.gridheight = 1;
         components.anchor = GridBagConstraints.EAST;
