@@ -12,10 +12,10 @@ public class Users extends JsonConverter {
     }
 
     public JSONObject get(String username) {
-        JSONArray users = ((JSONArray) this.obj);
+        JSONArray users = (JSONArray) this.obj;
         for (Object anUser : users) {
             JSONObject user = (JSONObject) anUser;
-            if (username.equals(user.get(username))) {  // castear!
+            if (username.equals(user.get("username"))) {
                 return user;
             }
         }
