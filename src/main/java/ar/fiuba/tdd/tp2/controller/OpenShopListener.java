@@ -4,18 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import ar.fiuba.tdd.tp2.gui.ProductListPanel;
 
 public class OpenShopListener implements ActionListener {
 
     private JFrame window;
-    private JScrollPane shopList;
+    private JTable shopList;
 
-    public OpenShopListener(JFrame frame, JScrollPane sp){
+    public OpenShopListener(JFrame frame, JTable shoppingList){
         this.window = frame;
-        this.shopList = sp;
+        this.shopList = shoppingList;
     }
 
     @Override

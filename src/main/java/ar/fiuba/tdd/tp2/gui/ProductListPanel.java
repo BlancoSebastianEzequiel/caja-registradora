@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import javax.swing.table.*;
 
 import ar.fiuba.tdd.tp2.controller.AddProductDialogListener;
+import ar.fiuba.tdd.tp2.controller.BackButtonListener;
+import ar.fiuba.tdd.tp2.controller.PaymentMethodDialog;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -59,6 +61,8 @@ public class ProductListPanel extends Panel{
         priceText.setBorder(new EmptyBorder(0,0,30,0));
 
         botonAgregarProducto.addActionListener(new AddProductDialogListener(this.window, productList, priceText));
+        botonCerrarCompra.addActionListener(new PaymentMethodDialog(this.window, productList));
+        botonCancelarCompra.addActionListener(new BackButtonListener(this.window, new ShoppingListCashierPanel(this.window)));
 
         GridBagConstraints components = new GridBagConstraints();
         components.gridx = 0;

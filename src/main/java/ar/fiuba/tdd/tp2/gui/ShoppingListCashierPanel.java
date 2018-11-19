@@ -24,7 +24,7 @@ public class ShoppingListCashierPanel extends Panel{
         botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
         JButton botonOpenShop = new JButton("Abrir compra");
         String colNames[] = {"ID de Compra","Fecha/Hora"};
-        String data[][] = {{"00000000","18-11-2018 13:25"}, {"00000001","20-11-2018 17:41"}};
+        String data[][] = {};
         
         //Avoid for the table is editable
         TableModel model = new DefaultTableModel(data, colNames){
@@ -55,7 +55,7 @@ public class ShoppingListCashierPanel extends Panel{
         sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(30,0,40,0), new EtchedBorder()));
         sp.getViewport().setBackground(Color.WHITE);
 
-        botonOpenShop.addActionListener(new OpenShopListener(this.window, sp));
+        botonOpenShop.addActionListener(new OpenShopListener(this.window, shoppingList));
 
         GridBagConstraints components = new GridBagConstraints();
         components.gridx = 0;
