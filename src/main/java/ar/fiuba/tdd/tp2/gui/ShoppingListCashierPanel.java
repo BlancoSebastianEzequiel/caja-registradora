@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.table.*;
+
+import ar.fiuba.tdd.tp2.controller.BackButtonListener;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -17,6 +20,7 @@ public class ShoppingListCashierPanel extends Panel{
 
         JLabel textTitle = new JLabel("Lista de compras");
         JButton botonVolver = new JButton("Volver");
+        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
         JButton botonOpenShop = new JButton("Abrir compra");
         String colNames[] = {"ID de Compra","Fecha/Hora"};
         String data[][] = {{"00000000","18-11-2018 13:25"}, {"00000001","20-11-2018 17:41"}};

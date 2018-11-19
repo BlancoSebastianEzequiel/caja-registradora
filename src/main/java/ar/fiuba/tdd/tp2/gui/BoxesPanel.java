@@ -5,6 +5,9 @@ import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.border.EmptyBorder;
+
+import ar.fiuba.tdd.tp2.controller.BackButtonListener;
+
 import java.awt.Color;
 
 public class BoxesPanel extends Panel{
@@ -17,6 +20,7 @@ public class BoxesPanel extends Panel{
         JLabel textTitle = new JLabel("Estado de cajas");
         JPanel boxButtonsPanel = new JPanel(new GridLayout(3,7,20,20));
         JButton botonVolver = new JButton("Volver");
+        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
 
         textTitle.setFont(textTitle.getFont().deriveFont(22.0f));
         boxButtonsPanel.setBorder(new EmptyBorder(40,0,80,0));
