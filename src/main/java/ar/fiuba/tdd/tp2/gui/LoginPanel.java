@@ -1,4 +1,4 @@
-package gui;
+package ar.fiuba.tdd.tp2.gui;
 
 import javax.swing.*;
 
@@ -14,7 +14,7 @@ public class LoginPanel extends Panel {
         JButton acercaDe = new JButton("Info");
         acercaDe.setBounds(690, 20, 70, 20);
 
-        JComboBox rolSelect = new JComboBox();
+        JComboBox<String> rolSelect = new JComboBox<String>();
         rolSelect.setBounds(350, 360, 190, 25);
         rolSelect.addItem("Cajero");
         rolSelect.addItem("Supervisor");

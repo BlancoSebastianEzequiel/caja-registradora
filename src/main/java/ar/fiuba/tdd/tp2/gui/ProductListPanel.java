@@ -1,7 +1,6 @@
-package gui;
+package ar.fiuba.tdd.tp2.gui;
 
 import javax.swing.*;
-import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.table.*;

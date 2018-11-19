@@ -1,4 +1,4 @@
-package gui;
+package ar.fiuba.tdd.tp2.gui;
 
 import javax.swing.*;
 
