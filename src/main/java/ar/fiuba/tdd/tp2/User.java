@@ -23,4 +23,8 @@ public class User {
 	public void canLogOut() {
 		this.role.canLogOut();
 	}
+
+	public String getUsername() {
+		return this.username;
+	}
 }
