@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.*;
 
+import ar.fiuba.tdd.tp2.controller.AboutDialogListener;
 import ar.fiuba.tdd.tp2.controller.HideMsgListener;
 import ar.fiuba.tdd.tp2.controller.LoginController;
 
@@ -61,6 +62,7 @@ public class LoginPanel extends Panel {
         aboutText.setOpaque(false); 
         
         iniciar.addActionListener(new LoginController(this.window, userBox, passBox, rolSelect, incorrectText));
+        acercaDe.addActionListener(new AboutDialogListener(this.window));
 
         panel.add(iniciar);
         panel.add(acercaDe);
