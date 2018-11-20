@@ -17,6 +17,7 @@ public class CashRegister implements CashRegisterInterface {
     private Integer totalCash;
     private Sale currentSale;
     private PurchaseSummaryTicket purchaseSummaryTicket;
+    private ControlTicket controlTicket;
 	
     public CashRegister(String usersFile, String offersFile, String rulesFile) throws IOException, ParseException {
         this.state = new Close();
@@ -25,6 +26,7 @@ public class CashRegister implements CashRegisterInterface {
         this.rules = new JsonConverter(rulesFile);
         this.totalCash = 0;
         this.usersList = new ArrayList<>();
+        this.controlTicket = new ControlTicket();
     }
     
     void changeState(CashRegisterState newState) {
@@ -91,12 +93,16 @@ public class CashRegister implements CashRegisterInterface {
 
     @Override
     public String getControlTicket() {
-        return null;
+        return this.controlTicket.getInstance().getLoggedData();
     }
 
     @Override
     public String getSummaryTicket() {
-        return null;
+      /*  PurchaseSummaryTicket summaryTicket = new PurchaseSummaryTicket(listProduct, discountHashtable);
+        return summaryTicket.printTicket();*/
+      //TODO obtener listProduct y discountHashtable.
+    return null;
+
     }
 
     public User getCashier() {
