@@ -41,6 +41,7 @@ public class ControlTicket {
     }
 
     public void logShipment(Integer total, Integer discounts, String paymentMethod) {
+        if (total == null || discounts == null || paymentMethod == null) return;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Purchase made at: ");
         stringBuilder.append(this.getTimeStamp());
@@ -54,13 +55,19 @@ public class ControlTicket {
         this.sumTotalByPaymentMethod(paymentMethod, total);
     }
 
-    public void logCashRegisterTotalCash(Integer cash) {
+    void logCashRegisterTotalCash(Integer cash) {
         this.LOGGER.add("Cash register total cash: " + cash);
     }
 
     public void closeCashRegister(User cashier) {
+        String cashierName;
+        if (cashier == null) {
+            cashierName = "no one";
+        } else {
+            cashierName = cashier.getUsername();
+        }
         this.logTotalByPaymentMethod();
-        this.LOGGER.add("operated by " + cashier.getUsername());
+        this.LOGGER.add("operated by " + cashierName);
         this.LOGGER.add("Close cash register at " + this.getTimeStamp());
     }
 

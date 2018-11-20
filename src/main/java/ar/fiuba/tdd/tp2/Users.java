@@ -11,19 +11,24 @@ public class Users extends JsonConverter {
         super(JsonFileName);
     }
 
-    public JSONObject get(String username) {
+    private String getPassword(JSONObject user) {
+        return (String) user.get("hashed_password");
+    }
+
+    public JSONObject get(String username, String password) {
         JSONArray users = (JSONArray) this.obj;
         for (Object anUser : users) {
             JSONObject user = (JSONObject) anUser;
-            if (username.equals(user.get("username"))) {
+            String pass = this.getPassword(user);
+            if (username.equals(user.get("username")) && password.equals(pass)) {
                 return user;
             }
         }
         throw new UserDoesNotExist();
     }
 
-    public User getUser(String username, String password) {
-        JSONObject user = this.get(username);
+    User getUser(String username, String password) {
+        JSONObject user = this.get(username, password);
         if (user.get("role").equals("cashier")) {
             return new User(username, password, new Cashier());
         } else {
