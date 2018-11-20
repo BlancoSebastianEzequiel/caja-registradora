@@ -1,35 +1,39 @@
 package ar.fiuba.tdd.tp2.acceptance;
 
-import ar.fiuba.tdd.tp2.acceptance.driver.CashRegisterTestDriver;
-import ar.fiuba.tdd.tp2.acceptance.driver.InvalidOperationException;
+import ar.fiuba.tdd.tp2.CashRegister;
+import ar.fiuba.tdd.tp2.CashRegisterInterface;
+import ar.fiuba.tdd.tp2.InvalidCashRegisterOperationException;
+import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class SaleTest {
-    private CashRegisterTestDriver testDriver;
+    private CashRegisterInterface cashRegister;
 
     @Before
-    public void setUp() {
-        throw new RuntimeException("not implemented yet!");
+    public void setUp() throws IOException, ParseException {
+        this.cashRegister = new CashRegister("users.json", "offers.json", "rules.json");
     }
 
     @After
     public void tearDown() {
         String supervisorUsername = "supervisor";
         String supervisorPassword = "123456";
-        if(testDriver.isUserSignedIn())
-            testDriver.logout();
-        if(testDriver.isOpen())
-            testDriver.close(supervisorUsername, supervisorPassword);
+        if(cashRegister.isUserSignedIn())
+            cashRegister.logout();
+        if(cashRegister.isOpen())
+            cashRegister.close(supervisorUsername, supervisorPassword);
     }
 
-    @Test(expected = InvalidOperationException.class)
+    @Test(expected = InvalidCashRegisterOperationException.class)
     public void addItemClosedCashRegisterTest() {
-        testDriver.addItemToCurrentSale("test_item");
+        cashRegister.addItemToCurrentSale("test_item");
     }
 
     @Test
@@ -38,34 +42,33 @@ public class SaleTest {
         String supervisorPassword = "123456";
         String username = "operator";
         String password = "123456";
-        testDriver.open(supervisorUsername, supervisorPassword);
-        testDriver.login(username, password);
+        cashRegister.open(supervisorUsername, supervisorPassword);
+        cashRegister.login(username, password);
 
-        testDriver.initSale();
+        cashRegister.initSale();
 
-        testDriver.addItemToCurrentSale("test_item");
-        testDriver.addItemToCurrentSale("test_item_2");
-        testDriver.addItemToCurrentSale("test_item_3");
-        testDriver.addItemToCurrentSale("test_item_4");
-        testDriver.addItemToCurrentSale("test_item_1");
+        cashRegister.addItemToCurrentSale("test_item");
+        cashRegister.addItemToCurrentSale("test_item_2");
+        cashRegister.addItemToCurrentSale("test_item_3");
+        cashRegister.addItemToCurrentSale("test_item_4");
+        cashRegister.addItemToCurrentSale("test_item_1");
 
-        testDriver.finishSale();
+        cashRegister.finishSale();
     }
 
-    @Test(expected = InvalidOperationException.class)
+    @Test(expected = InvalidCashRegisterOperationException.class)
     public void operatorInitSaleInClosedCashRegisterTest() {
         String supervisorUsername = "supervisor";
         String supervisorPassword = "123456";
         String username = "operator";
         String password = "123456";
-        testDriver.login(username, password);
-        testDriver.open(supervisorUsername, supervisorPassword);
-        assertFalse(testDriver.isUserSignedIn());
-        testDriver.login(username, password);
-        assertTrue(testDriver.isUserSignedIn());
-        testDriver.close(supervisorUsername, supervisorPassword);
-
-        testDriver.initSale();
+        cashRegister.login(username, password);
+        cashRegister.open(supervisorUsername, supervisorPassword);
+        assertFalse(cashRegister.isUserSignedIn());
+        cashRegister.login(username, password);
+        assertTrue(cashRegister.isUserSignedIn());
+        cashRegister.close(supervisorUsername, supervisorPassword);
+        cashRegister.initSale();
     }
 
     @Test
@@ -74,13 +77,12 @@ public class SaleTest {
         String supervisorPassword = "123456";
         String username = "operator";
         String password = "123456";
-        testDriver.login(username, password);
-        testDriver.open(supervisorUsername, supervisorPassword);
-        assertFalse(testDriver.isUserSignedIn());
-        testDriver.login(username, password);
-        assertTrue(testDriver.isUserSignedIn());
+        cashRegister.open(supervisorUsername, supervisorPassword);
+        assertFalse(cashRegister.isUserSignedIn());
+        cashRegister.login(username, password);
+        assertTrue(cashRegister.isUserSignedIn());
 
-        testDriver.initSale();
+        cashRegister.initSale();
     }
 
 
