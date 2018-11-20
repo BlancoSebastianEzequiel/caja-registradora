@@ -16,6 +16,7 @@ public class CashRegister implements CashRegisterInterface {
     private List<User> usersList;
     private Integer totalCash;
     private Sale currentSale;
+    private PurchaseSummaryTicket purchaseSummaryTicket;
 	
     public CashRegister(String usersFile, String offersFile, String rulesFile) throws IOException, ParseException {
         this.state = new Close();
@@ -86,6 +87,16 @@ public class CashRegister implements CashRegisterInterface {
 
     public void addItemToCurrentSale(String item) {
         this.state.addItemToCurrentSale(this.currentSale, item);
+    }
+
+    @Override
+    public String getControlTicket() {
+        return null;
+    }
+
+    @Override
+    public String getSummaryTicket() {
+        return null;
     }
 
     public User getCashier() {

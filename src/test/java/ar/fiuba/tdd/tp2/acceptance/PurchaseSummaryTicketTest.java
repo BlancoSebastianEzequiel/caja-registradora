@@ -40,14 +40,15 @@ public class PurchaseSummaryTicketTest {
 
     @Test
     public void checkTicketData() {
-        assertEquals("Leche Descremada 1L, la Calmisima 25.4 1\n" +
-                "Leche Descremada 1L, la Calmisima 25.4 2\n" +
-                "Gaseosa Cola 14.4 1\n" +
-                "65.2\n" +
-                "Leche Descremada 1L, la Calmisima 22.86 2\n" +
-                "Leche Descremada 1L, la Calmisima 22.86 2\n" +
-                "Gaseosa Cola 14.4 1\n" +
-                "60.12\n", purchaseTicket.printTicket());
+        assertEquals("Codigo Nombre    Cantidad  Precio\n" +
+                "AAR003 Gaseosa Cola 1 14.4\n" +
+                "AAR001 Leche Descremada 1L, la Calmisima 2 25.4\n" +
+                "Total:65.2\n" +
+                "Nombre del producto   Descuento Total\n"+
+                "Gaseosa Cola 0.0\n" +
+                "Leche Descremada 1L, la Calmisima 5.08\n" +
+                "Total con descuento: 60.12\n" 
+                , purchaseTicket.printTicket());
 
     }
 }
