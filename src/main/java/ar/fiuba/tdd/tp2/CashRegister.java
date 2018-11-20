@@ -52,7 +52,7 @@ public class CashRegister implements CashRegisterInterface {
             ControlTicket.getInstance().closeCashRegister(this.getCashier());
             this.state.close(this, this.users.getUser(username, password));
         } catch (UserDoesNotExist e) {
-            System.out.println("here");
+            //
         }
 
     }
