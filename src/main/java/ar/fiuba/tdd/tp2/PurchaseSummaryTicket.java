@@ -2,12 +2,13 @@ package ar.fiuba.tdd.tp2;
 
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Set;
 
 public class PurchaseSummaryTicket {
 
     private List<Product> productList;
     private Hashtable<String, Double> productDiscount;
-    private Hashtable<String, Integer> productQuantity;
+    private Hashtable<String, ProductTicket> productQuantity;
 
     public PurchaseSummaryTicket (List<Product> productList, Hashtable<String, Double> productDiscount){
         this.productList = productList;
@@ -25,41 +26,55 @@ public class PurchaseSummaryTicket {
     }
 
     private String printDiscountTicket(List<Product> productList) {
-        String summaryTicket="";
+        String summaryTicket="Nombre del producto   Descuento Total\n";
         Double Total = 0.0;
-        for(Product currentProduct : productList) {
-            Double disc = addDiscount(currentProduct);
-            Total = Total + currentProduct.getPrice()*(1-disc);
-            summaryTicket = summaryTicket + currentProduct.getName() + " " + currentProduct.getPrice() * (1-disc) + " " + productQuantity.get(currentProduct.getCode())+"\n";
+        Set<String> keys = productQuantity.keySet();
+        for(String currentProductCode : keys) {
+            Double disc = addDiscount(currentProductCode);
+            Total = Total +  this.productQuantity.get(currentProductCode).getPrice()*(1-disc)* this.productQuantity.get(currentProductCode).getQuantity();
+            summaryTicket = summaryTicket + this.productQuantity.get(currentProductCode).getName() + " " +  this.productQuantity.get(currentProductCode).getPrice() * disc *  this.productQuantity.get(currentProductCode).getQuantity()+"\n";
         }
-        summaryTicket = summaryTicket + Total + "\n";
+        summaryTicket =  summaryTicket + "Total con descuento: " + Total + "\n";
         return summaryTicket;
     }
 
     private String printPlainTicket (List<Product> productList){
-        String summaryTicket="";
+        String summaryTicket="Codigo Nombre    Cantidad  Precio\n";
         Double subTotal = 0.0;
-        for(Product currentProduct : productList) {
-            addQuantity(currentProduct);
-            subTotal = subTotal + currentProduct.getPrice();
-            summaryTicket = summaryTicket + currentProduct.getName() + " " + currentProduct.getPrice() + " " + productQuantity.get(currentProduct.getCode())+"\n";
+        checkCuantities(productList);
+        Set<String> keys = productQuantity.keySet();
+        for(String currentProductCode : keys) {
+            subTotal = subTotal + this.productQuantity.get(currentProductCode).getPrice() * this.productQuantity.get(currentProductCode).getQuantity();
+            summaryTicket = summaryTicket + this.productQuantity.get(currentProductCode).getCode()+" "+
+                    this.productQuantity.get(currentProductCode).getName() + " " +
+                    this.productQuantity.get(currentProductCode).getQuantity() + " " +
+                    this.productQuantity.get(currentProductCode).getPrice() + "\n";
         }
-        summaryTicket = summaryTicket + subTotal + "\n";
+        summaryTicket = summaryTicket + "Total:" + subTotal + "\n";
     return summaryTicket;
     }
-    private Double addDiscount(Product currentProduct) {
+
+    private void checkCuantities(List<Product> productList) {
+        for(Product currentProduct : productList) {
+            addQuantity(currentProduct);
+        }
+    }
+
+    private Double addDiscount(String currentProductCode) {
         Double discount = 0.0;
-        if (this.productDiscount.containsKey(currentProduct.getCode())) {
-            discount = productDiscount.get(currentProduct.getCode());
+        if (this.productDiscount.containsKey(currentProductCode)) {
+            discount = productDiscount.get(currentProductCode);
         }
         return discount;
     }
 
     public void addQuantity(Product currentProduct) {
         if (!this.productQuantity.containsKey(currentProduct.getCode())) {
-            this.productQuantity.put(currentProduct.getCode(), 1);
+            ProductTicket product = new ProductTicket(currentProduct.getCode(),1, currentProduct.getName(), currentProduct.getPrice());
+            this.productQuantity.put(currentProduct.getCode(), product);
         } else {
-            this.productQuantity.put(currentProduct.getCode(), this.productQuantity.get(currentProduct.getCode()) + 1);
+            this.productQuantity.get(currentProduct.getCode()).add();
+            this.productQuantity.put(currentProduct.getCode(), this.productQuantity.get(currentProduct.getCode()));
         }
 
     }
