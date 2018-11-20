@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp2.acceptance;
 
 import ar.fiuba.tdd.tp2.CashRegister;
 import ar.fiuba.tdd.tp2.CashRegisterInterface;
-import ar.fiuba.tdd.tp2.InvalidCashRegisterOperationException;
+import ar.fiuba.tdd.tp2.exceptions.InvalidCashRegisterOperationException;
 import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.Before;

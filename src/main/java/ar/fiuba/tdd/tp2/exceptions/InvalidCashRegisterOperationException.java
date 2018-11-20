@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp2;
+package ar.fiuba.tdd.tp2.exceptions;
 
 public class InvalidCashRegisterOperationException extends RuntimeException {
 

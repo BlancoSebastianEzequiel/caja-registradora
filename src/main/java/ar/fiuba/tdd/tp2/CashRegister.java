@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp2;
 
+import ar.fiuba.tdd.tp2.exceptions.UserDoesNotExist;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;

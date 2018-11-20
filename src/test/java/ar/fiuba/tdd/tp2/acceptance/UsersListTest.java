@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp2.acceptance;
 
 import ar.fiuba.tdd.tp2.Users;
+import ar.fiuba.tdd.tp2.exceptions.UserDoesNotExist;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.After;
@@ -22,7 +23,7 @@ public class UsersListTest {
     public void tearDown() {
     }
 
-    @Test(expected = ar.fiuba.tdd.tp2.UserDoesNotExist.class)
+    @Test(expected = UserDoesNotExist.class)
     public void notExistanceUserShouldRaiseException() {
         this.users.get("doesNotExists", "123456");
     }

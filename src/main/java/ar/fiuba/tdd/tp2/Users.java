@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp2;
 
+import ar.fiuba.tdd.tp2.exceptions.UserDoesNotExist;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;

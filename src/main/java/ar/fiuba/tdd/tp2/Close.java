@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.tp2;
 
 import ar.fiuba.tdd.tp2.exceptions.CanNotCloseClosedCashRegister;
+import ar.fiuba.tdd.tp2.exceptions.InvalidCashRegisterOperationException;
+
 import java.util.List;
 
 public final class Close extends CashRegisterState {

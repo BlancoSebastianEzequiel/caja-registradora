@@ -7,7 +7,6 @@ import ar.fiuba.tdd.tp2.CashRegister;
 import ar.fiuba.tdd.tp2.CashRegisterState;
 import ar.fiuba.tdd.tp2.Open;
 import ar.fiuba.tdd.tp2.Close;
-import ar.fiuba.tdd.tp2.InvalidCashRegisterOperationException;
 import ar.fiuba.tdd.tp2.exceptions.CanNotCloseClosedCashRegister;
 import ar.fiuba.tdd.tp2.exceptions.CanNotOpenOpenedCashRegister;
 import ar.fiuba.tdd.tp2.exceptions.CashierCanNotCloseCashRegisterException;
