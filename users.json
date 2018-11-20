@@ -1,17 +1,20 @@
 [
     {
         "username": "supervisor",
-        "password": "123456",
-        "role": "supervisor"
+        "hashed_password": "123456",
+        "role": "supervisor",
+        "hash_type": "md5"
     },
     {
         "username": "operator",
-        "password": "123456",
+        "hashed_password": "123456",
+        "hash_type": "plain",
         "role": "cashier"
     },
     {
         "username": "cajero",
-        "password": "123456",
+        "hashed_password": "123456",
+        "hash_type": "sha1",
         "role": "cashier"
     }
 ]

@@ -1,20 +1,21 @@
 package ar.fiuba.tdd.tp2;
 
+import ar.fiuba.tdd.tp2.exceptions.CashierCanNotCloseCashRegisterException;
+import ar.fiuba.tdd.tp2.exceptions.CashierCanNotOpenCashRegisterException;
+
 public class Cashier extends Role {
 
 	@Override
 	public void canOpen() {
-		throw new InvalidOperationException();
+		throw new CashierCanNotOpenCashRegisterException();
 	}
 
 	@Override
 	public void canClose() {
-		throw new InvalidOperationException();
+		throw new CashierCanNotCloseCashRegisterException();
 	}
 
-	@Override
-	public void canLogIn() {}
-
-	@Override
-	public void canLogOut() {}
+	public Boolean isCashier() {
+		return true;
+	}
 }

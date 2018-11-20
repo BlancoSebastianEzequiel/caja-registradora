@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Leche Descremada 1L, la Calmisima",
+    "brand": {
+      "code": "Z001ABC",
+      "name": "La Calmisima"
+    },
+    "category": {
+      "code": "X033AXX",
+      "name": "Lacteo"
+    },
+    "price": 25.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR001"
+  },
+  {
+    "name": "Leche Descremada 1L, Corsan",
+    "brand": {
+      "code": "Z002ABC",
+      "name": "Corsan"
+    },
+    "category": {
+      "code": "X033AXX",
+      "name": "Lacteo"
+    },
+    "price": 24.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR002"
+  },
+  {
+    "name": "Gaseosa Cola",
+    "brand": {
+      "code": "Z003ABC",
+      "name": "Cola"
+    },
+    "category": {
+      "code": "X034AXX",
+      "name": "Bebidas"
+    },
+    "price": 14.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR003"
+  },
+  {
+    "name": "Gaseosa Naranja",
+    "brand": {
+      "code": "Z003ABC",
+      "name": "Cola"
+    },
+    "category": {
+      "code": "X034AXX",
+      "name": "Bebidas"
+    },
+    "price": 13.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR004"
+  },
+  {
+    "name": "Gaseosa Limon",
+    "brand": {
+      "code": "Z003ABC",
+      "name": "Cola"
+    },
+    "category": {
+      "code": "X034AXX",
+      "name": "Bebidas"
+    },
+    "price": 11.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR005"
+  },
+  {
+    "name": "Gaseosa Cola",
+    "brand": {
+      "code": "Z004ABC",
+      "name": "Sipse"
+    },
+    "category": {
+      "code": "X034AXX",
+      "name": "Bebidas"
+    },
+    "price": 12.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR006"
+  },
+  {
+    "name": "Gaseosa Limon",
+    "brand": {
+      "code": "Z004ABC",
+      "name": "Sipse"
+    },
+    "category": {
+      "code": "X034AXX",
+      "name": "Bebidas"
+    },
+    "price": 14.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR007"
+  },
+  {
+    "name": "Agua Mineral",
+    "brand": {
+      "code": "Z004ABC",
+      "name": "Natura"
+    },
+    "category": {
+      "code": "X034AXX",
+      "name": "Bebidas"
+    },
+    "price": 8.40,
+    "iva_porcentage": 10.5,
+    "code": "AAR008"
+  }
+]

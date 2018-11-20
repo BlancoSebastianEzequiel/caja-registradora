@@ -4,6 +4,7 @@ public class User {
 	private Role role;
 	private String username;
 	private String password;
+	private Boolean isLoggedIn;
 	
 	public User(String username, String password, Role aRole) {
 		this.username = username;
@@ -13,14 +14,29 @@ public class User {
 	public void canOpen() {
 		this.role.canOpen();
 	}
+
 	public void canClose() {
 		this.role.canClose();
 	}
-	
-	public void canLogIn() {
-		this.role.canLogIn();
+
+	public String getUsername() {
+		return this.username;
 	}
-	public void canLogOut() {
-		this.role.canLogOut();
+
+	void logIn() {
+		this.isLoggedIn = true;
 	}
+
+	void logOut() {
+		this.isLoggedIn = false;
+	}
+
+	Boolean IsUserLoggedIn() {
+		return this.isLoggedIn;
+	}
+
+	Boolean isCashier() {
+		return this.role.isCashier();
+	}
+
 }

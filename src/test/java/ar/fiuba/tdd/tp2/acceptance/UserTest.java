@@ -1,12 +1,13 @@
 package ar.fiuba.tdd.tp2.acceptance;
 
-import ar.fiuba.tdd.tp2.Cashier;
-import ar.fiuba.tdd.tp2.Supervisor;
-import ar.fiuba.tdd.tp2.User;
-import ar.fiuba.tdd.tp2.InvalidOperationException;
+import ar.fiuba.tdd.tp2.*;
+import ar.fiuba.tdd.tp2.exceptions.CashierCanNotCloseCashRegisterException;
+import ar.fiuba.tdd.tp2.exceptions.CashierCanNotOpenCashRegisterException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
 
 
 public class UserTest {
@@ -26,7 +27,7 @@ public class UserTest {
     /**
      * An operator is not able to open a cash register
      */
-    @Test(expected = InvalidOperationException.class)
+    @Test(expected = CashierCanNotOpenCashRegisterException.class)
     public void operatorCanOpenACashRegister() {
         this.cashier.canOpen();
     }
@@ -34,7 +35,7 @@ public class UserTest {
     /**
      * An operator is not able to close a cash register
      */
-    @Test(expected = InvalidOperationException.class)
+    @Test(expected = CashierCanNotCloseCashRegisterException.class)
     public void operatorCannotCloseACashRegister() {
         this.cashier.canClose();
     }

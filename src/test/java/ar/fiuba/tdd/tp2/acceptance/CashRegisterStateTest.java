@@ -7,12 +7,15 @@ import ar.fiuba.tdd.tp2.CashRegister;
 import ar.fiuba.tdd.tp2.CashRegisterState;
 import ar.fiuba.tdd.tp2.Open;
 import ar.fiuba.tdd.tp2.Close;
-import ar.fiuba.tdd.tp2.InvalidCashRegisterOperationException;
-import ar.fiuba.tdd.tp2.InvalidOperationException;
+import ar.fiuba.tdd.tp2.exceptions.CanNotCloseClosedCashRegister;
+import ar.fiuba.tdd.tp2.exceptions.CanNotOpenOpenedCashRegister;
+import ar.fiuba.tdd.tp2.exceptions.CashierCanNotCloseCashRegisterException;
+import ar.fiuba.tdd.tp2.exceptions.CashierCanNotOpenCashRegisterException;
 import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
 
@@ -37,12 +40,12 @@ public class CashRegisterStateTest {
     public void tearDown() {
     }
 
-    @Test(expected = InvalidCashRegisterOperationException.class)
-    public void cannotOpenAnOpennedCashRegister() {
+    @Test(expected = CanNotOpenOpenedCashRegister.class)
+    public void cannotOpenAnOpenedCashRegister() {
         this.open.open(this.cashRegister, this.supervisor);
     }
 
-    @Test(expected = InvalidCashRegisterOperationException.class)
+    @Test(expected = CanNotCloseClosedCashRegister.class)
     public void cannotCloseAClosedCashRegister() {
         this.close.close(this.cashRegister, this.supervisor);
     }
@@ -66,7 +69,7 @@ public class CashRegisterStateTest {
     /**
      * A cashier is not able to close a cash register
      */
-    @Test(expected = InvalidOperationException.class)
+    @Test(expected = CashierCanNotCloseCashRegisterException.class)
     public void cashierCannotCloseACashRegister() {
     	this.open.close(this.cashRegister, this.cashier);
     }
@@ -74,7 +77,7 @@ public class CashRegisterStateTest {
     /**
      * A cashier is not able to open a cash register
      */
-    @Test(expected = InvalidOperationException.class)
+    @Test(expected = CashierCanNotOpenCashRegisterException.class)
     public void cashierCannotOpenACashRegister() {
     	this.close.open(this.cashRegister, this.cashier);
     }
