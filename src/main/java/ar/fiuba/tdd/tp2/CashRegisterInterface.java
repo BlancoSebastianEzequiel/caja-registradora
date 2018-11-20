@@ -15,4 +15,6 @@ public interface CashRegisterInterface {
     void initSale();
     void finishSale();
     void addItemToCurrentSale(String item);
+    String getControlTicket();
+    String getSummaryTicket();
 }
