@@ -15,9 +15,15 @@ public class LoginPanel extends Panel {
 
         JButton iniciar = new JButton("Iniciar");
         iniciar.setBounds(348, 410, 100, 30);
+        iniciar.setBackground(new Color(53,131,199));
+        iniciar.setFocusPainted(false);
+        iniciar.setForeground(Color.white);
 
         JButton acercaDe = new JButton("Info");
         acercaDe.setBounds(690, 20, 70, 20);
+        acercaDe.setBackground(new Color(53,131,199));
+        acercaDe.setFocusPainted(false);
+        acercaDe.setForeground(Color.white);
 
         JLabel userText = new JLabel("Usuario:");
         userText.setBounds(230, 225, 330, 20);

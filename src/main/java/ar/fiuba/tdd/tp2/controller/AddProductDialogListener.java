@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp2.controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -52,10 +53,16 @@ public class AddProductDialogListener implements ActionListener {
 
         JButton cancelButton = new  JButton("Cancelar");
         cancelButton.setBounds(265, 90, 100, 25);
+        cancelButton.setBackground(new Color(53,131,199));
+        cancelButton.setFocusPainted(false);
+        cancelButton.setForeground(Color.white);
         cancelButton.addActionListener(new CancelAddProductListener(this.window, dialog));
 
         JButton addButton = new  JButton("Agregar");
         addButton.setBounds(35, 90, 100, 25);
+        addButton.setBackground(new Color(53,131,199));
+        addButton.setFocusPainted(false);
+        addButton.setForeground(Color.white);
         addButton.addActionListener(new AddProductListener(this.window, dialog, products_list, products, this.table, this.priceText));
 
         panelDialog.add(selectProductText);

@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import ar.fiuba.tdd.tp2.gui.BoxesPanel;
 import ar.fiuba.tdd.tp2.gui.ShoppingListCashierPanel;
+import ar.fiuba.tdd.tp2.gui.ShoppingListSupervisorPanel;
 
 public class LoginController implements ActionListener {
 
@@ -35,7 +35,7 @@ public class LoginController implements ActionListener {
         }
 
         if((this.user.getText().equals("rootS")) && (this.pass.getText().equals("rootS")) && (String.valueOf(this.mode.getSelectedItem()).equals("Supervisor"))){
-            BoxesPanel bp = new BoxesPanel(this.window);
+            ShoppingListSupervisorPanel bp = new ShoppingListSupervisorPanel(this.window, false);
 
             this.window.getContentPane().removeAll();
             this.window.getContentPane().add(bp.getPanel());

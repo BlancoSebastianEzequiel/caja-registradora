@@ -3,25 +3,51 @@ package ar.fiuba.tdd.tp2.gui;
 import javax.swing.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+
 import javax.swing.table.*;
+
+import ar.fiuba.tdd.tp2.controller.BackButtonListener;
+import ar.fiuba.tdd.tp2.controller.OpenBoxListener;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
 public class ShoppingListSupervisorPanel extends Panel{
 
-    public ShoppingListSupervisorPanel(JFrame frame){
+    public ShoppingListSupervisorPanel(JFrame frame, Boolean boxOpen){
         this.window = frame;
         panel.setLayout(new GridBagLayout());
         panel.setBorder(new EmptyBorder(40,30,30,30));
 
-        JLabel textTitle = new JLabel("Caja #: Lista de compras");
-        JButton botonVolver = new JButton("Volver");
+        JLabel textTitle = new JLabel("Estado de caja");
+        JButton botonVolver = new JButton("   Volver   ");
+        botonVolver.setBackground(new Color(53,131,199));
+        botonVolver.setFocusPainted(false);
+        botonVolver.setForeground(Color.white);
+
         JButton botonVerTicket = new JButton("Ver ticket");
-        JToggleButton botonOpenBox = new JToggleButton("Cerrada");
+        botonVerTicket.setBackground(new Color(53,131,199));
+        botonVerTicket.setFocusPainted(false);
+        botonVerTicket.setForeground(Color.white);
+
+        JToggleButton botonOpenBox = new JToggleButton();
+        botonOpenBox.setForeground(Color.white);
+        if(!boxOpen){
+            botonOpenBox.setBackground(new Color(160,40,40));
+            botonOpenBox.setText("Cerrada");
+        } else {
+            botonOpenBox.setBackground(new Color(41,183,117));
+            botonOpenBox.setText("Abierta");
+        }
+        botonOpenBox.addActionListener(new OpenBoxListener(this.window));
+
         String colNames[] = {"ID de Compra","Fecha/Hora","Estado"};
-        String data[][] = {{"00000000","18-11-2018 13:25","En proceso"}, {"00000001","20-11-2018 17:41","Terminado"}};
-        
+        String data[][] = {};
+
+        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
+        botonVerTicket.addActionListener(new BackButtonListener(this.window, new TicketPanel(this.window)));
+
         //Avoid for the table is editable
         TableModel model = new DefaultTableModel(data, colNames){
 

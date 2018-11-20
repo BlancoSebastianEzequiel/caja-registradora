@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp2.controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -39,11 +40,16 @@ public class PaymentMethodDialog implements ActionListener {
 
         JButton cancelButton = new  JButton("Cancelar");
         cancelButton.setBounds(265, 90, 100, 25);
+        cancelButton.setBackground(new Color(53,131,199));
+        cancelButton.setFocusPainted(false);
+        cancelButton.setForeground(Color.white);
         cancelButton.addActionListener(new CancelAddProductListener(this.window, dialog));
 
         JButton acceptButton = new  JButton("Aceptar");
         acceptButton.setBounds(35, 90, 100, 25);
-        //acceptButton.addActionListener();
+        acceptButton.setBackground(new Color(53,131,199));
+        acceptButton.setFocusPainted(false);
+        acceptButton.setForeground(Color.white);
 
         panelDialog.add(paymentMethodText);
         panelDialog.add(paymentMethods);

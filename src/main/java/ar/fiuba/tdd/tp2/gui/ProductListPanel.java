@@ -23,9 +23,22 @@ public class ProductListPanel extends Panel{
         JLabel priceText = new JLabel("Precio total:   $0.00");
 
         JLabel textTitle = new JLabel("Lista de productos");
-        JButton botonCancelarCompra = new JButton("Cancelar compra");
-        JButton botonCerrarCompra = new JButton("Cerrar compra");
+
+        JButton botonCancelarCompra = new JButton(" Cancelar compra ");
+        botonCancelarCompra.setBackground(new Color(53,131,199));
+        botonCancelarCompra.setFocusPainted(false);
+        botonCancelarCompra.setForeground(Color.white);
+
+        JButton botonCerrarCompra = new JButton("   Cerrar compra   ");
+        botonCerrarCompra.setBackground(new Color(53,131,199));
+        botonCerrarCompra.setFocusPainted(false);
+        botonCerrarCompra.setForeground(Color.white);
+
         JButton botonAgregarProducto = new JButton("Agregar producto");
+        botonAgregarProducto.setBackground(new Color(53,131,199));
+        botonAgregarProducto.setFocusPainted(false);
+        botonAgregarProducto.setForeground(Color.white);
+
         String colNames[] = {"Producto","Precio"};
         String data[][] = {};
         

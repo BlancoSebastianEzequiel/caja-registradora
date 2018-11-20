@@ -20,9 +20,17 @@ public class ShoppingListCashierPanel extends Panel{
         panel.setBorder(new EmptyBorder(40,30,30,30));
 
         JLabel textTitle = new JLabel("Lista de compras");
-        JButton botonVolver = new JButton("Volver");
+        JButton botonVolver = new JButton("      Volver      ");
+        botonVolver.setBackground(new Color(53,131,199));
+        botonVolver.setFocusPainted(false);
+        botonVolver.setForeground(Color.white);
         botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
+
         JButton botonOpenShop = new JButton("Abrir compra");
+        botonOpenShop.setBackground(new Color(53,131,199));
+        botonOpenShop.setFocusPainted(false);
+        botonOpenShop.setForeground(Color.white);
+
         String colNames[] = {"ID de Compra","Fecha/Hora"};
         String data[][] = {};
         

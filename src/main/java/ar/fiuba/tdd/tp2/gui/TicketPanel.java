@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.tp2.gui;
 
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.border.EmptyBorder;
@@ -15,6 +17,10 @@ public class TicketPanel extends Panel{
 
         JLabel textTitle = new JLabel("Ticket");
         JButton botonAceptar = new JButton("Aceptar");
+        botonAceptar.setBackground(new Color(53,131,199));
+        botonAceptar.setFocusPainted(false);
+        botonAceptar.setForeground(Color.white);
+
         JEditorPane textTicket = new JEditorPane();
         textTicket.setContentType("text/html");
 
