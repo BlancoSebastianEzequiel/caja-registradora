@@ -8,6 +8,7 @@ public abstract class CashRegisterState {
 	public abstract User login(String username, String password, Users users);
 	public abstract Boolean isOpen();
 	public abstract Boolean isUserSignedIn(List<User> usersList);
-	public abstract Sale initSale();
-	public abstract void addItemToCurrentSale(Sale sale, String item);
+	public abstract Sale initSale(Adapter adapter);
+	public abstract void canFinishSale();
+	public abstract void canAddItemToCurrentSale();
 }
