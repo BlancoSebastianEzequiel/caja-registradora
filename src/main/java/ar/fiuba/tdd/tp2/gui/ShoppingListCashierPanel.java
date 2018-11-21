@@ -24,7 +24,7 @@ public class ShoppingListCashierPanel extends Panel{
         botonVolver.setBackground(new Color(53,131,199));
         botonVolver.setFocusPainted(false);
         botonVolver.setForeground(Color.white);
-        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
+        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window, null)));
 
         JButton botonOpenShop = new JButton("Abrir compra");
         botonOpenShop.setBackground(new Color(53,131,199));

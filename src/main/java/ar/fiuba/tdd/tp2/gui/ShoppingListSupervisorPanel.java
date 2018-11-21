@@ -45,7 +45,7 @@ public class ShoppingListSupervisorPanel extends Panel{
         String colNames[] = {"ID de Compra","Fecha/Hora","Estado"};
         String data[][] = {};
 
-        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
+        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window, null)));
         botonVerTicket.addActionListener(new BackButtonListener(this.window, new TicketPanel(this.window)));
 
         //Avoid for the table is editable

@@ -1,6 +1,12 @@
 package ar.fiuba.tdd.tp2.gui;
 
+import java.io.IOException;
+
 import javax.swing.*;
+
+import org.json.simple.parser.ParseException;
+
+import ar.fiuba.tdd.tp2.CashRegister;
 
 public class StartGui {
 
@@ -20,14 +26,15 @@ public class StartGui {
         window.setVisible(true);
     }
 
-    public JFrame getFrame(){
+    public JFrame getFrame() {
         return window;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, ParseException{
         StartGui gui = new StartGui();
-        Panel login = new LoginPanel(gui.getFrame());
-        
+        CashRegister cashReg = new CashRegister("users.json", "offers.json", "rules.json");
+        Panel login = new LoginPanel(gui.getFrame(), cashReg);
+
         gui.getFrame().getContentPane().add(login.getPanel());
         gui.refreshScreen();
     }
