@@ -41,4 +41,11 @@ public class AtomicRule extends Rule {
     public Object getValue() {
         return this.value;
     }
+
+    public Boolean isAtomic() {
+        return true;
+    }
+    public Boolean isCompound() {
+        return false;
+    }
 }
