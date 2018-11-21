@@ -17,8 +17,8 @@
     (read-string s)))
 
 (defroutes app-routes
-  (POST "/example/api/initialize" request
-    (prn "/example/api/initialize")
+  (POST "/validator/api/initialize" request
+    (prn "/validator/api/initialize")
     (let [
           offer (get-in request [:json-params "offers"])
           rules (get-in request [:json-params "rules"])
@@ -29,8 +29,8 @@
     )
   )
 
-  (POST "/example/api/process-sale" request
-    (prn "/example/api/process-sale")
+  (POST "/validator/api/process-sale" request
+    (prn "/validator/api/process-sale")
     (let [
           state (get-in request [:json-params "state"])
           sale (get-in request [:json-params "sale"])

@@ -29,51 +29,6 @@ public class Controller {
       this.offersAPI = retrofit.create(OffersAPI.class);
     }
 
-    public void listCars() {
-        System.out.println("List Cars:");
-        Call<List<Car>> call = this.offersAPI.listCars();
-        call.enqueue( new Callback<List<Car>>() {
-            @Override
-            public void onResponse(Call<List<Car>> call, Response<List<Car>> response) {
-                if(response.isSuccessful()) {
-                    List<Car> carsParking = response.body();
-                    for (Car car : carsParking) {
-                        System.out.println("id:" + car.id);
-                        System.out.println("brand:" +car.brand);
-                    }
-                } else {
-                    System.out.println(response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Car>> call, Throwable t) {
-                t.printStackTrace();
-            }
-          });
-    }
-
-    public void createCar(Car car) {
-        System.out.println("Create cars:");
-        Call<Car> call = this.offersAPI.createCar(car);
-        call.enqueue(new Callback<Car>() {
-            @Override
-            public void onResponse(Call<Car> call, Response<Car> response) {
-                if(response.isSuccessful()) {
-                    Car new_car = response.body();
-                    System.out.println(new_car.brand);
-                } else {
-                    System.out.println(response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Car> call, Throwable t) {
-                t.printStackTrace();
-            }
-          });
-    }
-
     public void initializeOffers(OffersInitializer offer_initializer) {
         System.out.println("Initialize offers");
         Call<String> call = this.offersAPI.initializeOffers(offer_initializer);

@@ -6,16 +6,9 @@ import retrofit2.http.*;
 import java.util.List;
 
 public interface OffersAPI {
-
-    @GET("example/api/car")
-    Call<List<Car>> listCars();
-
-    @POST("/example/api/car")
-    Call<Car> createCar(@Body Car car);
-
-    @POST("/example/api/initialize")
+    @POST("/validator/api/initialize")
     Call<String> initializeOffers(@Body OffersInitializer offer_initializer);
 
-    @POST("/example/api/process-sale")
+    @POST("/validator/api/process-sale")
     Call<List<SaleResult>> processSale(@Body ProcessSale process_sale);
 }
