@@ -11,15 +11,13 @@ import ar.fiuba.tdd.tp2.controller.LoginController;
 
 public class LoginPanel extends Panel {
 
-    private CashRegister cashReg;
-
     public LoginPanel(JFrame frame, CashRegister cash){
         this.window = frame;
         this.cashReg = cash;
         panel.setLayout(null);
 
         JButton iniciar = new JButton("Iniciar");
-        iniciar.setBounds(353, 410, 100, 30);
+        iniciar.setBounds(349, 410, 100, 30);
         iniciar.setBackground(new Color(53,131,199));
         iniciar.setFocusPainted(false);
         iniciar.setForeground(Color.white);
@@ -36,8 +34,8 @@ public class LoginPanel extends Panel {
         JLabel passText = new JLabel("Contraseña:");
         passText.setBounds(235, 330, 330, 20);
 
-        JLabel incorrectText = new JLabel("Los datos ingresados son incorrectos");
-        incorrectText.setBounds(265, 480, 280, 20);
+        JLabel incorrectText = new JLabel("", SwingConstants.CENTER);
+        incorrectText.setBounds(0, 480, 800, 20);
         incorrectText.setForeground(Color.red);
         incorrectText.setVisible(false);
 

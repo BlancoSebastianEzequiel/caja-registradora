@@ -14,7 +14,6 @@ public class LoginController implements ActionListener {
     private JFrame window;
     private JTextField user;
     private JTextField pass;
-    private JComboBox<String> mode; 
     private JLabel msg;
     private CashRegister cashReg;
 
@@ -22,7 +21,6 @@ public class LoginController implements ActionListener {
         this.window = frame;
         this.user = user;
         this.pass = pass;
-        this.mode = mode;
         this.msg = msg;
         this.cashReg = cash;
     }
@@ -38,13 +36,13 @@ public class LoginController implements ActionListener {
                 ShoppingListCashierPanel bp = new ShoppingListCashierPanel(this.window);
                 this.window.getContentPane().add(bp.getPanel());
             } else {
-                ShoppingListSupervisorPanel bp = new ShoppingListSupervisorPanel(this.window, false);
+                ShoppingListSupervisorPanel bp = new ShoppingListSupervisorPanel(this.window, this.cashReg, this.user, this.pass);
                 this.window.getContentPane().add(bp.getPanel());
             }
 
             this.window.revalidate();
         } catch (RuntimeException ex) {
-            System.out.println(ex.getMessage());
+            this.msg.setText(ex.getMessage());
             this.msg.setVisible(true);
             this.window.revalidate();
         }

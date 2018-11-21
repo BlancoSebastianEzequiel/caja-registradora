@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.table.*;
 
+import ar.fiuba.tdd.tp2.CashRegister;
 import ar.fiuba.tdd.tp2.controller.BackButtonListener;
 import ar.fiuba.tdd.tp2.controller.OpenBoxListener;
 
@@ -15,8 +16,9 @@ import java.awt.Color;
 
 public class ShoppingListSupervisorPanel extends Panel{
 
-    public ShoppingListSupervisorPanel(JFrame frame, Boolean boxOpen){
+    public ShoppingListSupervisorPanel(JFrame frame, CashRegister cash, JTextField user, JTextField pass){
         this.window = frame;
+        this.cashReg = cash;
         panel.setLayout(new GridBagLayout());
         panel.setBorder(new EmptyBorder(40,30,30,30));
 
@@ -33,19 +35,19 @@ public class ShoppingListSupervisorPanel extends Panel{
 
         JToggleButton botonOpenBox = new JToggleButton();
         botonOpenBox.setForeground(Color.white);
-        if(!boxOpen){
-            botonOpenBox.setBackground(new Color(160,40,40));
-            botonOpenBox.setText("Cerrada");
-        } else {
+        if(cashReg.isOpen()){
             botonOpenBox.setBackground(new Color(41,183,117));
             botonOpenBox.setText("Abierta");
+        } else {
+            botonOpenBox.setBackground(new Color(160,40,40));
+            botonOpenBox.setText("Cerrada");
         }
-        botonOpenBox.addActionListener(new OpenBoxListener(this.window));
+        botonOpenBox.addActionListener(new OpenBoxListener(this.window, this.cashReg, user, pass));
 
         String colNames[] = {"ID de Compra","Fecha/Hora","Estado"};
         String data[][] = {};
 
-        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window, null)));
+        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window, this.cashReg)));
         botonVerTicket.addActionListener(new BackButtonListener(this.window, new TicketPanel(this.window)));
 
         //Avoid for the table is editable
