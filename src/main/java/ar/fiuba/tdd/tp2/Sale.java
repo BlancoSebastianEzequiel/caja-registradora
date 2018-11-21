@@ -39,4 +39,12 @@ public class Sale {
         }
         return this.purchaseSummaryTicket.printTicket();
     }
+
+    public double getTotal() {
+        return this.purchaseSummaryTicket.getTotal();
+    }
+
+    public double getTotalDiscount() {
+        return this.purchaseSummaryTicket.getTotalDiscount();
+    }
 }

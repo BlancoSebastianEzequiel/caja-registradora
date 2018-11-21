@@ -12,11 +12,13 @@ public class PurchaseSummaryTicket {
     private List<SaleResult> discounts;
     private Hashtable<String, ProductTicket> productQuantity;
     private double total;
+    private double totalDiscount;
 
     public PurchaseSummaryTicket (List<Product> productList,  List<SaleResult> discounts){
         this.productList = productList;
         this.discounts = discounts;
         this.productQuantity = new Hashtable<>();
+        this.totalDiscount = 0;
     }
 
     public String printTicket () {
@@ -30,6 +32,7 @@ public class PurchaseSummaryTicket {
             double discount = result.getDiscount();
             String offerCode = result.getOffer_code();
             this.total -= discount;
+            this.totalDiscount += discount;
             summaryTicket = summaryTicket  + description + " " + offerCode + " " + discount + "\n";
         }
         summaryTicket =  summaryTicket + "Total con descuento: " + this.total + "\n";
@@ -74,5 +77,11 @@ public class PurchaseSummaryTicket {
 
     }
 
+    public double getTotal() {
+        return this.total;
+    }
 
+    public double getTotalDiscount() {
+        return this.totalDiscount;
+    }
 }
