@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.tp2;
 
 import ar.fiuba.tdd.tp2.offer_validator_client.*;
+import ar.fiuba.tdd.tp2.offer_validator_client.Rule;
+import ar.fiuba.tdd.tp2.offer_validator_client.Offer;
 import ar.fiuba.tdd.tp2.offer_validator_client.Product;
 import ar.fiuba.tdd.tp2.offer_validator_client.PurchaseDate;
 import ar.fiuba.tdd.tp2.offer_validator_client.Sale;
