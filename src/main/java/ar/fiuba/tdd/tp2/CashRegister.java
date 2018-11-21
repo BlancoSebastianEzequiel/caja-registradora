@@ -17,14 +17,16 @@ public class CashRegister implements CashRegisterInterface {
     private Integer totalCash;
     private Sale currentSale;
     private PurchaseSummaryTicket purchaseSummaryTicket;
+    private ControlTicket controlTicket;
 	
     public CashRegister(String usersFile, String offersFile, String rulesFile) throws IOException, ParseException {
         this.state = new Close();
         this.users = new Users(usersFile);
-        this.offers = new JsonConverter(offersFile);
-        this.rules = new JsonConverter(rulesFile);
+        this.offers = new Offers(offersFile);
+        this.rules = new Rules(rulesFile);
         this.totalCash = 0;
         this.usersList = new ArrayList<>();
+        this.controlTicket = new ControlTicket();
     }
     
     void changeState(CashRegisterState newState) {
@@ -91,12 +93,12 @@ public class CashRegister implements CashRegisterInterface {
 
     @Override
     public String getControlTicket() {
-        return null;
+        return ControlTicket.getInstance().getLoggedData();
     }
 
     @Override
     public String getSummaryTicket() {
-        return null;
+      return this.currentSale.getSummaryTicket();
     }
 
     public User getCashier() {
