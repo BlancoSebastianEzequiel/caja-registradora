@@ -1,9 +1,10 @@
 package ar.fiuba.tdd.tp2.offer_validator_client;
 
-public class Rule {
-    String code, description, type, field, value;
+public class AtomicRule extends Rule {
+    String code, description, type, field;
+    Object value;
 
-    public Rule(String code, String description, String type, String field, String value) {
+    public AtomicRule(String code, String description, String type, String field, Object value) {
         this.code = code;
         this.description = description;
         this.type = type;
@@ -27,7 +28,7 @@ public class Rule {
         return type;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 }
