@@ -17,6 +17,8 @@ public class Sale {
         // List<Product> products = this.items.getProducts();
         // PurchaseDate purchaseDate = new PurchaseDate();
         // TODO: call API REST clojure and call purchase summary ticket
+        // ProcessSale process_sale = new ProcessSale("hols", sale);
+        // controller.processSale(process_sale);
     }
 
     void addItem(String item) {
