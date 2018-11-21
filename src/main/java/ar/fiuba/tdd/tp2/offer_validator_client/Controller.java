@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp2.offer_validator_client;
-
-//import ar.fiuba.tdd.tp2.offer_validator_client.OffersAPI;
+;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import retrofit2.Call;
@@ -15,6 +14,7 @@ public class Controller {
 
     static final String BASE_URL = "http://localhost:3000/";
     OffersAPI offersAPI;
+    List<SaleResult> results;
 
     public Controller() {
       Gson gson = new GsonBuilder()
@@ -37,9 +37,9 @@ public class Controller {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()) {
                     String message = response.body();
-                    System.out.println("\n\n"+message);
+                    System.out.println(message);
                 } else {
-                    System.out.println(response.errorBody());
+                    System.out.println("ERROR: " + response.errorBody());
                 }
             }
 
@@ -57,11 +57,7 @@ public class Controller {
             @Override
             public void onResponse(Call<List<SaleResult>> call, Response<List<SaleResult>> response) {
                 if(response.isSuccessful()) {
-                    List<SaleResult> sale_results = response.body();
-                    for (SaleResult sale : sale_results) {
-                        System.out.println("description: " + sale.description);
-                        System.out.println("discount: " +sale.discount);
-                    }
+                    results = response.body();
                 } else {
                     System.out.println(response.errorBody());
                 }
@@ -72,5 +68,9 @@ public class Controller {
                 t.printStackTrace();
             }
         });
+    }
+
+    public List<SaleResult> getResults() {
+        return results;
     }
 }
