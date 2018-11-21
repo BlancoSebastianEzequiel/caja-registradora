@@ -33,7 +33,7 @@ public class LoginController implements ActionListener {
             this.window.getContentPane().removeAll();
 
             if(this.cashReg.isUserSignedIn()){
-                ShoppingListCashierPanel bp = new ShoppingListCashierPanel(this.window);
+                ShoppingListCashierPanel bp = new ShoppingListCashierPanel(this.window, this.cashReg, this.user, this.pass);
                 this.window.getContentPane().add(bp.getPanel());
             } else {
                 ShoppingListSupervisorPanel bp = new ShoppingListSupervisorPanel(this.window, this.cashReg, this.user, this.pass);
