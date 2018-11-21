@@ -6,7 +6,6 @@
             [ring.adapter.jetty :as jetty]
             [compojure.handler :as handler]
             [rage-db.core :as rdb]
-            [validator.cuatro :refer :all]
             [validator.offer-processor :refer :all]))
 
 ;; Utility function to parse an integer
