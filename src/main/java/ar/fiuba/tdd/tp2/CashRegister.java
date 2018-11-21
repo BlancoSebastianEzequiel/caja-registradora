@@ -14,7 +14,7 @@ public class CashRegister implements CashRegisterInterface {
     private Offers offers;
     private Rules rules;
     private List<User> usersList;
-    private Integer totalCash;
+    private Double totalCash;
     private Sale currentSale;
     private PurchaseSummaryTicket purchaseSummaryTicket;
     private Adapter adapter;
@@ -24,7 +24,7 @@ public class CashRegister implements CashRegisterInterface {
         this.users = new Users(usersFile);
         this.offers = new Offers(offersFile);
         this.rules = new Rules(rulesFile);
-        this.totalCash = 0;
+        this.totalCash = 0.0;
         this.usersList = new ArrayList<>();
         this.adapter = new Adapter(this.rules, this.offers);
     }
@@ -84,9 +84,10 @@ public class CashRegister implements CashRegisterInterface {
 
     public void finishSale() {
         this.state.canFinishSale();
-        // TODO: implementar issue #5 y #6 donde se crea la compra para obtener estos datos
-        // ControlTicket.getInstance().logShipment(null, null, null);
         this.currentSale.finishSale();
+        this.totalCash += this.currentSale.getTotal();
+        double discount = this.currentSale.getTotalDiscount();
+        ControlTicket.getInstance().logShipment(this.totalCash, discount, "CASH");
     }
 
     public void addItemToCurrentSale(String item) {
