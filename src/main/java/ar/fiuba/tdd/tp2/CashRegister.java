@@ -11,13 +11,13 @@ public class CashRegister implements CashRegisterInterface {
 
 	private CashRegisterState state;
 	private Users users;
-    private JsonConverter offers;
-    private JsonConverter rules;
+    private Offers offers;
+    private Rules rules;
     private List<User> usersList;
     private Integer totalCash;
     private Sale currentSale;
     private PurchaseSummaryTicket purchaseSummaryTicket;
-    private ControlTicket controlTicket;
+    private Adapter adapter;
 	
     public CashRegister(String usersFile, String offersFile, String rulesFile) throws IOException, ParseException {
         this.state = new Close();
@@ -26,7 +26,7 @@ public class CashRegister implements CashRegisterInterface {
         this.rules = new Rules(rulesFile);
         this.totalCash = 0;
         this.usersList = new ArrayList<>();
-        this.controlTicket = new ControlTicket();
+        this.adapter = new Adapter(this.rules, this.offers);
     }
     
     void changeState(CashRegisterState newState) {
@@ -79,16 +79,19 @@ public class CashRegister implements CashRegisterInterface {
     }
 
     public void initSale() {
-        this.currentSale = this.state.initSale();
+        this.currentSale = this.state.initSale(this.adapter);
     }
 
     public void finishSale() {
+        this.state.canFinishSale();
         // TODO: implementar issue #5 y #6 donde se crea la compra para obtener estos datos
-        ControlTicket.getInstance().logShipment(null, null, null);
+        // ControlTicket.getInstance().logShipment(null, null, null);
+        this.currentSale.finishSale();
     }
 
     public void addItemToCurrentSale(String item) {
-        this.state.addItemToCurrentSale(this.currentSale, item);
+        this.state.canAddItemToCurrentSale();
+        this.currentSale.addItem(item);
     }
 
     @Override
