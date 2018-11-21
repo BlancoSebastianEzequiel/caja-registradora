@@ -33,7 +33,7 @@ public class SaleTest {
 
     @Test(expected = InvalidCashRegisterOperationException.class)
     public void addItemClosedCashRegisterTest() {
-        cashRegister.addItemToCurrentSale("test_item");
+        cashRegister.addItemToCurrentSale("AAR001");
     }
 
     @Test
@@ -47,11 +47,11 @@ public class SaleTest {
 
         cashRegister.initSale();
 
-        cashRegister.addItemToCurrentSale("test_item");
-        cashRegister.addItemToCurrentSale("test_item_2");
-        cashRegister.addItemToCurrentSale("test_item_3");
-        cashRegister.addItemToCurrentSale("test_item_4");
-        cashRegister.addItemToCurrentSale("test_item_1");
+        cashRegister.addItemToCurrentSale("AAR001");
+        cashRegister.addItemToCurrentSale("AAR002");
+        cashRegister.addItemToCurrentSale("AAR003");
+        cashRegister.addItemToCurrentSale("AAR004");
+        cashRegister.addItemToCurrentSale("AAR005");
 
         cashRegister.finishSale();
     }
