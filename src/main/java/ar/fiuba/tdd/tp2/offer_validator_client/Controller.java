@@ -96,6 +96,26 @@ public class Controller {
     }
 
     public void processSale(ProcessSale process_sale) {
+        System.out.println("Process Sale");
+        Call<List<SaleResult>> call = this.offersAPI.processSale(process_sale);
+        call.enqueue(new Callback<List<SaleResult>>() {
+            @Override
+            public void onResponse(Call<List<SaleResult>> call, Response<List<SaleResult>> response) {
+                if(response.isSuccessful()) {
+                    List<SaleResult> sale_results = response.body();
+                    for (SaleResult sale : sale_results) {
+                        System.out.println("description: " + sale.description);
+                        System.out.println("discount: " +sale.discount);
+                    }
+                } else {
+                    System.out.println(response.errorBody());
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<SaleResult>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }

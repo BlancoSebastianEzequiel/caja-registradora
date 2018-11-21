@@ -2,9 +2,9 @@ package ar.fiuba.tdd.tp2.offer_validator_client;
 
 public class Discount {
     String type;
-    Integer value;
+    String value;
 
-    public Discount(String type, Integer value) {
+    public Discount(String type, String value) {
         this.type = type;
         this.value = value;
     }
@@ -13,7 +13,7 @@ public class Discount {
         return type;
     }
 
-    public Integer getValue() {
+    public String getValue() {
         return value;
     }
 }
