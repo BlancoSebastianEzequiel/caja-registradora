@@ -13,29 +13,11 @@ public class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-//        controller.listCars();
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        Car car = new Car("red", "ford", "mondeo", 3);
-//
-//        controller.createCar(car);
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        controller.listCars();
+
         List<Offer> offers = getOffers();
         List<Rule> rules = getRules();
         OffersInitializer offer_initializer = new OffersInitializer(offers, rules);
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+
         controller.initializeOffers(offer_initializer);
 
         try {
