@@ -94,4 +94,8 @@ public class Controller {
             }
           });
     }
+
+    public void processSale(ProcessSale process_sale) {
+
+    }
 }

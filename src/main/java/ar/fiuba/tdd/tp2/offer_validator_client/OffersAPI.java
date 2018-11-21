@@ -17,5 +17,5 @@ public interface OffersAPI {
     Call<String> initializeOffers(@Body OffersInitializer offer_initializer);
 
     @POST("/example/api/process-sale")
-    Call<String> initializeOffers(@Body ProcessSale process_sale);
+    Call<String> processSale(@Body ProcessSale process_sale);
 }
