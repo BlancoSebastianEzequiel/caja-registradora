@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class JsonConverter {
     private JSONParser parser;
-    protected Object obj;
+    Object obj;
 
-    public JsonConverter(String JsonFileName) throws IOException, ParseException {
+    JsonConverter(String JsonFileName) throws IOException, ParseException {
         this.parser = new JSONParser();
         this.obj = parser.parse(new FileReader(JsonFileName));
     }

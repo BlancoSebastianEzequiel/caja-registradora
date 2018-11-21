@@ -4,6 +4,5 @@ public abstract class Role {
 	private WorkingHours workingHours;
 	public abstract void canOpen();
 	public abstract void canClose();
-	public abstract void canLogIn();
-	public abstract void canLogOut();
+	public abstract Boolean isCashier();
 }

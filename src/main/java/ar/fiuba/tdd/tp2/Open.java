@@ -1,32 +1,25 @@
 package ar.fiuba.tdd.tp2;
 
+import ar.fiuba.tdd.tp2.exceptions.CanNotOpenOpenedCashRegister;
+
+import java.util.List;
+
 public final class Open extends CashRegisterState {
-	
-	private Boolean isSignedIn = false;
 	
 	@Override
 	public void open(CashRegister aCashRegister, User user) {
-		// TODO Auto-generated method stub
-		throw new InvalidCashRegisterOperationException();
+		throw new CanNotOpenOpenedCashRegister();
 	}
 
 	@Override
 	public void close(CashRegister aCashRegister, User user) {
-		// TODO Auto-generated method stub
 		user.canClose();
 		aCashRegister.changeState(new Close());
 	}
 
 	@Override
-	public void login(User anUser) {
-		anUser.canLogIn();
-		this.isSignedIn = true;
-	}
-
-	@Override
-	public void logout(User anUser) {
-		anUser.canLogOut();
-		this.isSignedIn = false;
+	public User login(String username, String password, Users users) {
+		return users.getUser(username, password);
 	}
 
 	@Override
@@ -35,8 +28,21 @@ public final class Open extends CashRegisterState {
 	}
 
 	@Override
-	public Boolean isUserSignedIn() {
-		return this.isSignedIn;
+	public Boolean isUserSignedIn(List<User> usersList) {
+		for (User anUser: usersList) {
+			if (anUser.IsUserLoggedIn()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Sale initSale() {
+		return new Sale();
+	}
+
+	public void addItemToCurrentSale(Sale sale, String item) {
+		sale.addItem(item);
 	}
 
 }
