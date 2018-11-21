@@ -13,7 +13,7 @@ import java.awt.Color;
 
 public class ShoppingListCashierPanel extends Panel{
 
-    public ShoppingListCashierPanel(JFrame frame, CashRegister cash, JTextField user, JTextField pass){
+    public ShoppingListCashierPanel(JFrame frame, CashRegister cash){
         this.window = frame;
         this.cashReg = cash;
         panel.setLayout(null);
@@ -68,7 +68,7 @@ public class ShoppingListCashierPanel extends Panel{
         sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0,0,0,0), new EtchedBorder()));
         sp.getViewport().setBackground(Color.WHITE);
 
-        botonOpenShop.addActionListener(new OpenShopListener(this.window, shoppingList));
+        botonOpenShop.addActionListener(new OpenShopListener(this.window, this.cashReg));
 
         ImageIcon imagen = new ImageIcon("src/main/java/ar/fiuba/tdd/tp2/gui/data/img/rcback.png");
         JLabel background = new JLabel(imagen);

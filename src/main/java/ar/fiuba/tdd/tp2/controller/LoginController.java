@@ -32,8 +32,8 @@ public class LoginController implements ActionListener {
             this.cashReg.login(this.user.getText(), this.pass.getText());
             this.window.getContentPane().removeAll();
 
-            if(this.cashReg.isUserSignedIn()){
-                ShoppingListCashierPanel bp = new ShoppingListCashierPanel(this.window, this.cashReg, this.user, this.pass);
+            if(this.cashReg.getCashier() != null){
+                ShoppingListCashierPanel bp = new ShoppingListCashierPanel(this.window, this.cashReg);
                 this.window.getContentPane().add(bp.getPanel());
             } else {
                 ShoppingListSupervisorPanel bp = new ShoppingListSupervisorPanel(this.window, this.cashReg, this.user, this.pass);

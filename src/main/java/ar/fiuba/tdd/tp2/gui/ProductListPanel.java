@@ -5,6 +5,7 @@ import java.awt.Insets;
 
 import javax.swing.table.*;
 
+import ar.fiuba.tdd.tp2.CashRegister;
 import ar.fiuba.tdd.tp2.controller.AccessPanelListener;
 import ar.fiuba.tdd.tp2.controller.AddProductDialogListener;
 import ar.fiuba.tdd.tp2.controller.PaymentMethodDialog;
@@ -15,8 +16,9 @@ import java.awt.Color;
 
 public class ProductListPanel extends Panel{
 
-    public ProductListPanel(JFrame frame){
+    public ProductListPanel(JFrame frame, CashRegister cash){
         this.window = frame;
+        this.cashReg = cash;
         panel.setLayout(null);
 
         JLabel priceText = new JLabel("Precio total:   $0.00", SwingConstants.RIGHT);
@@ -78,12 +80,11 @@ public class ProductListPanel extends Panel{
 
         priceText.setBounds(35, 460, 730, 20);
 
-        botonAgregarProducto.addActionListener(new AddProductDialogListener(this.window, productList, priceText));
+        botonAgregarProducto.addActionListener(new AddProductDialogListener(this.window, productList, priceText, this.cashReg));
         botonAgregarProducto.setMargin(new Insets(1,1,1,1));
         botonCerrarCompra.addActionListener(new PaymentMethodDialog(this.window, productList));
 
-        //CORREGIR PARÁMETROS
-        botonCancelarCompra.addActionListener(new AccessPanelListener(this.window, new ShoppingListCashierPanel(this.window, null, null, null)));
+        botonCancelarCompra.addActionListener(new AccessPanelListener(this.window, new ShoppingListCashierPanel(this.window, this.cashReg)));
         botonCancelarCompra.setMargin(new Insets(1,1,1,1));
 
         ImageIcon imagen = new ImageIcon("src/main/java/ar/fiuba/tdd/tp2/gui/data/img/rcback.png");
