@@ -3,8 +3,6 @@ package ar.fiuba.tdd.tp2.gui;
 import javax.swing.*;
 
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -12,11 +10,13 @@ public class TicketPanel extends Panel{
 
     public TicketPanel(JFrame frame){
         this.window = frame;
-        panel.setLayout(new GridBagLayout());
-        panel.setBorder(new EmptyBorder(40,30,30,30));
+        panel.setLayout(null);
 
         JLabel textTitle = new JLabel("Ticket");
+        textTitle.setBounds(30, 30, 740, 40);
+
         JButton botonAceptar = new JButton("Aceptar");
+        botonAceptar.setBounds(325, 505, 150, 35);
         botonAceptar.setBackground(new Color(53,131,199));
         botonAceptar.setFocusPainted(false);
         botonAceptar.setForeground(Color.white);
@@ -106,35 +106,18 @@ public class TicketPanel extends Panel{
 
         JScrollPane sp = new JScrollPane(textTicket);
 
-        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(30,0,40,0), new EtchedBorder()));
+        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0,0,0,0), new EtchedBorder()));
+        sp.setBounds(30, 95, 740, 360);
         textTitle.setFont(textTitle.getFont().deriveFont(22.0f));
+
+        ImageIcon imagen = new ImageIcon("src/main/java/ar/fiuba/tdd/tp2/gui/data/img/rcback.png");
+        JLabel background = new JLabel(imagen);
+        background.setBounds(0,0,800,600);
         
-        GridBagConstraints components = new GridBagConstraints();
-        components.gridx = 0;
-        components.gridy = 0;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.weightx = 1.0;
-        components.anchor = GridBagConstraints.WEST;
-        panel.add(textTitle, components);
-        components.anchor = GridBagConstraints.CENTER;
-
-        components.gridx = 0;
-        components.gridy = 1;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.weighty = 1.0;
-        components.fill = GridBagConstraints.BOTH;
-        panel.add(sp, components);
-        components.weighty = 0.0;
-        components.fill = GridBagConstraints.NONE;
-
-        components.gridx = 0;
-        components.gridy = 2;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.anchor = GridBagConstraints.CENTER;
-        panel.add(botonAceptar, components);
+        panel.add(textTitle);
+        panel.add(sp);
+        panel.add(botonAceptar);
+        panel.add(background);
     }
 
 }

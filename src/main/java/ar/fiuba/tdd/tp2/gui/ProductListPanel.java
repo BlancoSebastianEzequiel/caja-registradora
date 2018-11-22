@@ -1,12 +1,13 @@
 package ar.fiuba.tdd.tp2.gui;
 
 import javax.swing.*;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.Insets;
+
 import javax.swing.table.*;
 
+import ar.fiuba.tdd.tp2.CashRegister;
+import ar.fiuba.tdd.tp2.controller.AccessPanelListener;
 import ar.fiuba.tdd.tp2.controller.AddProductDialogListener;
-import ar.fiuba.tdd.tp2.controller.BackButtonListener;
 import ar.fiuba.tdd.tp2.controller.PaymentMethodDialog;
 
 import javax.swing.border.EmptyBorder;
@@ -15,26 +16,29 @@ import java.awt.Color;
 
 public class ProductListPanel extends Panel{
 
-    public ProductListPanel(JFrame frame){
+    public ProductListPanel(JFrame frame, CashRegister cash){
         this.window = frame;
-        panel.setLayout(new GridBagLayout());
-        panel.setBorder(new EmptyBorder(40,30,30,30));
+        this.cashReg = cash;
+        panel.setLayout(null);
 
-        JLabel priceText = new JLabel("Precio total:   $0.00");
+        JLabel priceText = new JLabel("Precio total:   $0.00", SwingConstants.RIGHT);
 
         JLabel textTitle = new JLabel("Lista de productos");
 
-        JButton botonCancelarCompra = new JButton(" Cancelar compra ");
+        JButton botonCancelarCompra = new JButton("Cancelar compra");
+        botonCancelarCompra.setBounds(620, 505, 150, 35);
         botonCancelarCompra.setBackground(new Color(53,131,199));
         botonCancelarCompra.setFocusPainted(false);
         botonCancelarCompra.setForeground(Color.white);
 
-        JButton botonCerrarCompra = new JButton("   Cerrar compra   ");
+        JButton botonCerrarCompra = new JButton("Cerrar compra");
+        botonCerrarCompra.setBounds(325, 505, 150, 35);
         botonCerrarCompra.setBackground(new Color(53,131,199));
         botonCerrarCompra.setFocusPainted(false);
         botonCerrarCompra.setForeground(Color.white);
 
         JButton botonAgregarProducto = new JButton("Agregar producto");
+        botonAgregarProducto.setBounds(30, 505, 150, 35);
         botonAgregarProducto.setBackground(new Color(53,131,199));
         botonAgregarProducto.setFocusPainted(false);
         botonAgregarProducto.setForeground(Color.white);
@@ -66,65 +70,34 @@ public class ProductListPanel extends Panel{
         }
 
         textTitle.setFont(textTitle.getFont().deriveFont(22.0f));
+        textTitle.setBounds(30, 30, 740, 40);
+
         JScrollPane sp = new JScrollPane(productList);
 
-        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(30,0,5,0), new EtchedBorder()));
+        sp.setBounds(30, 95, 740, 360);
+        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0,0,0,0), new EtchedBorder()));
         sp.getViewport().setBackground(Color.WHITE);
 
-        priceText.setBorder(new EmptyBorder(0,0,30,0));
+        priceText.setBounds(35, 460, 730, 20);
 
-        botonAgregarProducto.addActionListener(new AddProductDialogListener(this.window, productList, priceText));
+        botonAgregarProducto.addActionListener(new AddProductDialogListener(this.window, productList, priceText, this.cashReg));
+        botonAgregarProducto.setMargin(new Insets(1,1,1,1));
         botonCerrarCompra.addActionListener(new PaymentMethodDialog(this.window, productList));
-        botonCancelarCompra.addActionListener(new BackButtonListener(this.window, new ShoppingListCashierPanel(this.window)));
 
-        GridBagConstraints components = new GridBagConstraints();
-        components.gridx = 0;
-        components.gridy = 0;
-        components.gridwidth = 3;
-        components.gridheight = 1;
-        components.weightx = 1.0;
-        components.anchor = GridBagConstraints.WEST;
-        panel.add(textTitle, components);
-        
-        components.gridx = 0;
-        components.gridy = 2;
-        components.gridwidth = 3;
-        components.gridheight = 1;
-        components.weightx = 1.0;
-        components.anchor = GridBagConstraints.EAST;
-        panel.add(priceText, components);
-        components.anchor = GridBagConstraints.CENTER;
+        botonCancelarCompra.addActionListener(new AccessPanelListener(this.window, new ShoppingListCashierPanel(this.window, this.cashReg)));
+        botonCancelarCompra.setMargin(new Insets(1,1,1,1));
 
-        components.gridx = 0;
-        components.gridy = 1;
-        components.gridwidth = 3;
-        components.gridheight = 1;
-        components.weighty = 1.0;
-        components.fill = GridBagConstraints.BOTH;
-        panel.add(sp, components);
-        components.weighty = 0.0;
-        components.fill = GridBagConstraints.NONE;
+        ImageIcon imagen = new ImageIcon("src/main/java/ar/fiuba/tdd/tp2/gui/data/img/rcback.png");
+        JLabel background = new JLabel(imagen);
+        background.setBounds(0,0,800,600);
 
-        components.gridx = 0;
-        components.gridy = 3;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.anchor = GridBagConstraints.WEST;
-        panel.add(botonAgregarProducto, components);
-
-        components.gridx = 1;
-        components.gridy = 3;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.anchor = GridBagConstraints.CENTER;
-        panel.add(botonCerrarCompra, components);
-
-        components.gridx = 2;
-        components.gridy = 3;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.anchor = GridBagConstraints.EAST;
-        panel.add(botonCancelarCompra, components);
+        panel.add(textTitle);
+        panel.add(priceText);
+        panel.add(sp);
+        panel.add(botonAgregarProducto);
+        panel.add(botonCerrarCompra);
+        panel.add(botonCancelarCompra);
+        panel.add(background);
     }
 
 }

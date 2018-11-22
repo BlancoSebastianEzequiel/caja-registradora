@@ -4,18 +4,20 @@ import java.awt.Color;
 
 import javax.swing.*;
 
+import ar.fiuba.tdd.tp2.CashRegister;
 import ar.fiuba.tdd.tp2.controller.AboutDialogListener;
 import ar.fiuba.tdd.tp2.controller.HideMsgListener;
 import ar.fiuba.tdd.tp2.controller.LoginController;
 
 public class LoginPanel extends Panel {
 
-    public LoginPanel(JFrame frame){
+    public LoginPanel(JFrame frame, CashRegister cash){
         this.window = frame;
+        this.cashReg = cash;
         panel.setLayout(null);
 
         JButton iniciar = new JButton("Iniciar");
-        iniciar.setBounds(348, 410, 100, 30);
+        iniciar.setBounds(349, 410, 100, 30);
         iniciar.setBackground(new Color(53,131,199));
         iniciar.setFocusPainted(false);
         iniciar.setForeground(Color.white);
@@ -27,42 +29,37 @@ public class LoginPanel extends Panel {
         acercaDe.setForeground(Color.white);
 
         JLabel userText = new JLabel("Usuario:");
-        userText.setBounds(230, 225, 330, 20);
+        userText.setBounds(235, 265, 330, 20);
 
         JLabel passText = new JLabel("Contraseña:");
-        passText.setBounds(230, 290, 330, 20);
+        passText.setBounds(235, 330, 330, 20);
 
-        JLabel rolText = new JLabel("Iniciar como:");
-        rolText.setBounds(230, 362, 100, 20);
-
-        JLabel incorrectText = new JLabel("Los datos ingresados son incorrectos");
-        incorrectText.setBounds(265, 480, 280, 20);
+        JLabel incorrectText = new JLabel("", SwingConstants.CENTER);
+        incorrectText.setBounds(0, 480, 800, 20);
         incorrectText.setForeground(Color.red);
         incorrectText.setVisible(false);
 
         JTextField userBox = new JTextField();
-        userBox.setBounds(220, 250, 350, 30);
+        userBox.setBounds(225, 290, 350, 30);
         userBox.addMouseListener(new HideMsgListener(incorrectText));
         userBox.addKeyListener(new HideMsgListener(incorrectText));
 
         JTextField passBox = new JTextField();
-        passBox.setBounds(220, 315, 350, 30);
+        passBox.setBounds(225, 355, 350, 30);
         passBox.addMouseListener(new HideMsgListener(incorrectText));
         passBox.addKeyListener(new HideMsgListener(incorrectText));
-
-        JComboBox<String> rolSelect = new JComboBox<String>();
-        rolSelect.setBounds(350, 360, 190, 25);
-        rolSelect.addItem("Cajero");
-        rolSelect.addItem("Supervisor");
-        rolSelect.addMouseListener(new HideMsgListener(incorrectText));
 
         JLabel aboutText = new JLabel("Trabajo Práctico:" + 
         " Técnicas de Diseño - 2do Cuatrimestre 2018");
         aboutText.setBounds(180, 525, 440, 20);
         aboutText.setOpaque(false); 
         
-        iniciar.addActionListener(new LoginController(this.window, userBox, passBox, rolSelect, incorrectText));
+        iniciar.addActionListener(new LoginController(this.window, userBox, passBox, incorrectText, this.cashReg));
         acercaDe.addActionListener(new AboutDialogListener(this.window));
+
+        ImageIcon imagen = new ImageIcon("src/main/java/ar/fiuba/tdd/tp2/gui/data/img/rcbacklogin.png");
+        JLabel background = new JLabel(imagen);
+        background.setBounds(0,0,800,600);
 
         panel.add(iniciar);
         panel.add(acercaDe);
@@ -70,9 +67,8 @@ public class LoginPanel extends Panel {
         panel.add(passText);
         panel.add(userBox);
         panel.add(passBox);
-        panel.add(rolSelect);
-        panel.add(rolText);
         panel.add(aboutText);
         panel.add(incorrectText);
+        panel.add(background);
     }
 }

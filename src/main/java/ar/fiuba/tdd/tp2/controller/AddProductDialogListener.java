@@ -13,16 +13,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import ar.fiuba.tdd.tp2.CashRegister;
+
 public class AddProductDialogListener implements ActionListener {
 
     private JFrame window;
     private JTable table;
     private JLabel priceText;
+    private CashRegister cashReg;
 
-    public AddProductDialogListener(JFrame frame, JTable table, JLabel priceText){
+    public AddProductDialogListener(JFrame frame, JTable table, JLabel priceText, CashRegister cash){
             this.window = frame;
             this.table = table;
             this.priceText = priceText;
+            this.cashReg = cash;
     }
 
     @Override

@@ -1,12 +1,11 @@
 package ar.fiuba.tdd.tp2.gui;
 
 import javax.swing.*;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-
 import javax.swing.table.*;
 
-import ar.fiuba.tdd.tp2.controller.BackButtonListener;
+import ar.fiuba.tdd.tp2.CashRegister;
+import ar.fiuba.tdd.tp2.controller.AccessPanelListener;
+import ar.fiuba.tdd.tp2.controller.LogoutListener;
 import ar.fiuba.tdd.tp2.controller.OpenBoxListener;
 
 import javax.swing.border.EmptyBorder;
@@ -15,38 +14,42 @@ import java.awt.Color;
 
 public class ShoppingListSupervisorPanel extends Panel{
 
-    public ShoppingListSupervisorPanel(JFrame frame, Boolean boxOpen){
+    public ShoppingListSupervisorPanel(JFrame frame, CashRegister cash, JTextField user, JTextField pass){
         this.window = frame;
-        panel.setLayout(new GridBagLayout());
-        panel.setBorder(new EmptyBorder(40,30,30,30));
+        this.cashReg = cash;
+        panel.setLayout(null);
 
         JLabel textTitle = new JLabel("Estado de caja");
-        JButton botonVolver = new JButton("   Volver   ");
-        botonVolver.setBackground(new Color(53,131,199));
-        botonVolver.setFocusPainted(false);
-        botonVolver.setForeground(Color.white);
+
+        JButton botonDesconectar = new JButton("Desconectar");
+        botonDesconectar.setBounds(620, 505, 150, 35);
+        botonDesconectar.setBackground(new Color(53,131,199));
+        botonDesconectar.setFocusPainted(false);
+        botonDesconectar.setForeground(Color.white);
 
         JButton botonVerTicket = new JButton("Ver ticket");
+        botonVerTicket.setBounds(325, 505, 150, 35);
         botonVerTicket.setBackground(new Color(53,131,199));
         botonVerTicket.setFocusPainted(false);
         botonVerTicket.setForeground(Color.white);
 
         JToggleButton botonOpenBox = new JToggleButton();
+        botonOpenBox.setBounds(30, 505, 150, 35);
         botonOpenBox.setForeground(Color.white);
-        if(!boxOpen){
-            botonOpenBox.setBackground(new Color(160,40,40));
-            botonOpenBox.setText("Cerrada");
-        } else {
+        if(cashReg.isOpen()){
             botonOpenBox.setBackground(new Color(41,183,117));
             botonOpenBox.setText("Abierta");
+        } else {
+            botonOpenBox.setBackground(new Color(160,40,40));
+            botonOpenBox.setText("Cerrada");
         }
-        botonOpenBox.addActionListener(new OpenBoxListener(this.window));
+        botonOpenBox.addActionListener(new OpenBoxListener(this.window, this.cashReg, user, pass));
 
         String colNames[] = {"ID de Compra","Fecha/Hora","Estado"};
         String data[][] = {};
 
-        botonVolver.addActionListener(new BackButtonListener(this.window, new LoginPanel(this.window)));
-        botonVerTicket.addActionListener(new BackButtonListener(this.window, new TicketPanel(this.window)));
+        botonDesconectar.addActionListener(new LogoutListener(this.window, this.cashReg, new LoginPanel(this.window, this.cashReg)));
+        botonVerTicket.addActionListener(new AccessPanelListener(this.window, new TicketPanel(this.window)));
 
         //Avoid for the table is editable
         TableModel model = new DefaultTableModel(data, colNames){
@@ -72,51 +75,24 @@ public class ShoppingListSupervisorPanel extends Panel{
         }
 
         textTitle.setFont(textTitle.getFont().deriveFont(22.0f));
+        textTitle.setBounds(30, 30, 740, 40);
+
         JScrollPane sp = new JScrollPane(shoppingList);
 
-        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(30,0,40,0), new EtchedBorder()));
+        sp.setBounds(30, 95, 740, 360);
+        sp.setBorder(BorderFactory.createCompoundBorder(new EmptyBorder(0,0,0,0), new EtchedBorder()));
         sp.getViewport().setBackground(Color.WHITE);
 
-        GridBagConstraints components = new GridBagConstraints();
-        components.gridx = 0;
-        components.gridy = 0;
-        components.gridwidth = 3;
-        components.gridheight = 1;
-        components.weightx = 1.0;
-        components.anchor = GridBagConstraints.WEST;
-        panel.add(textTitle, components);
-        components.anchor = GridBagConstraints.CENTER;
+        ImageIcon imagen = new ImageIcon("src/main/java/ar/fiuba/tdd/tp2/gui/data/img/rcback.png");
+        JLabel background = new JLabel(imagen);
+        background.setBounds(0,0,800,600);
 
-        components.gridx = 0;
-        components.gridy = 1;
-        components.gridwidth = 3;
-        components.gridheight = 1;
-        components.weighty = 1.0;
-        components.fill = GridBagConstraints.BOTH;
-        panel.add(sp, components);
-        components.weighty = 0.0;
-        components.fill = GridBagConstraints.NONE;
-
-        components.gridx = 0;
-        components.gridy = 2;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.anchor = GridBagConstraints.WEST;
-        panel.add(botonOpenBox, components);
-
-        components.gridx = 1;
-        components.gridy = 2;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.anchor = GridBagConstraints.CENTER;
-        panel.add(botonVerTicket, components);
-
-        components.gridx = 2;
-        components.gridy = 2;
-        components.gridwidth = 1;
-        components.gridheight = 1;
-        components.anchor = GridBagConstraints.EAST;
-        panel.add(botonVolver, components);
+        panel.add(textTitle);
+        panel.add(sp);
+        panel.add(botonOpenBox);
+        panel.add(botonVerTicket);
+        panel.add(botonDesconectar);
+        panel.add(background);
     }
 
 }
