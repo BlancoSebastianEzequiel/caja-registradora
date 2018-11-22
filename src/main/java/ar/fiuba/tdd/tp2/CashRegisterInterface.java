@@ -13,7 +13,7 @@ public interface CashRegisterInterface {
     void login(String username, String password);
     void logout();
     void initSale();
-    void finishSale();
+    void finishSale(String method, String bank);
     void addItemToCurrentSale(String item);
     String getControlTicket();
     String getSummaryTicket();
