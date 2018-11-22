@@ -1,9 +1,6 @@
 package ar.fiuba.tdd.tp2;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import java.util.List;
 
 public class CompoundRule extends Rule {
     private String type;
@@ -26,5 +23,12 @@ public class CompoundRule extends Rule {
 
     public Object getRules() {
         return this.rules;
+    }
+
+    public Boolean isAtomic() {
+        return false;
+    }
+    public Boolean isCompound() {
+        return true;
     }
 }

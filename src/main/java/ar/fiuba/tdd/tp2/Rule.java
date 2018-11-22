@@ -10,4 +10,7 @@ public abstract class Rule {
         }
         return new CompoundRule(aRule);
     }
+
+    public abstract Boolean isAtomic();
+    public abstract Boolean isCompound();
 }

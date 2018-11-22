@@ -27,8 +27,8 @@ public class Offer {
             String aRule = (String) anObjectRule;
             this.ruleRules.add(aRule);
         }
-        this.discountType = (String) anOffer.get("description");
-        this.discountValue = (String) anOffer.get("description");
+        this.discountType = (String) ((JSONObject) anOffer.get("discount")).get("type");
+        this.discountValue = (String) ((JSONObject) anOffer.get("discount")).get("value");
     }
 
     public String getDescription() {

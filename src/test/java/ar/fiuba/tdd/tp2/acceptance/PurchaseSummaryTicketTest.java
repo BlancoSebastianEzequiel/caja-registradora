@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp2.acceptance;
 
 import ar.fiuba.tdd.tp2.Product;
 import ar.fiuba.tdd.tp2.PurchaseSummaryTicket;
+import ar.fiuba.tdd.tp2.offer_validator_client.SaleResult;
 import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.Before;
@@ -9,46 +10,45 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class PurchaseSummaryTicketTest {
     private List<Product> productList;
     private PurchaseSummaryTicket purchaseTicket;
-    private Hashtable<String, Double> productDiscount;
+    private List<SaleResult> discounts;
 
     @Before
     public void setUp() throws IOException, ParseException {
-        //List<Product> productList = this.items.getProducts();
         this.productList = new ArrayList<>();
         this.productList.add(new Product("products.json", "AAR001"));
         this.productList.add(new Product("products.json", "AAR001"));
         this.productList.add(new Product("products.json", "AAR003"));
-        /*this.productList.add(new Product("products.json", "AAR004"));*/
-        this.productDiscount = new Hashtable<>();
-        this.productDiscount.put("AAR001", 0.1);
-        this.purchaseTicket = new PurchaseSummaryTicket(this.productList, this.productDiscount);
+        this.discounts = new ArrayList<>();
+        this.discounts.add(new SaleResult("description1", "offerCode1", 10));
+        this.discounts.add(new SaleResult("description2", "offerCode2", 10));
+        this.discounts.add(new SaleResult("description3", "offerCode3", 10));
+        this.purchaseTicket = new PurchaseSummaryTicket(this.productList, this.discounts);
     }
 
     @After
-    public void tearDown() {
-
-    }
+    public void tearDown() {}
 
     @Test
     public void checkTicketData() {
-        assertEquals("Codigo Nombre    Cantidad  Precio\n" +
+        String expected =
+                "Codigo Nombre Cantidad Precio\n" +
                 "AAR003 Gaseosa Cola 1 14.4\n" +
                 "AAR001 Leche Descremada 1L, la Calmisima 2 25.4\n" +
-                "Total:65.2\n" +
-                "Nombre del producto   Descuento Total\n"+
-                "Gaseosa Cola 0.0\n" +
-                "Leche Descremada 1L, la Calmisima 5.08\n" +
-                "Total con descuento: 60.12\n" 
-                , purchaseTicket.printTicket());
+                "Total: 65.2\n" +
+                "Descripcion Descuento\n" +
+                "description1 offerCode1 10.0\n"+
+                "description2 offerCode2 10.0\n" +
+                "description3 offerCode3 10.0\n" +
+                "Total con descuento: 35.2\n";
+        String actual = purchaseTicket.printTicket();
+        assertTrue(actual.equals(expected));
 
     }
 }

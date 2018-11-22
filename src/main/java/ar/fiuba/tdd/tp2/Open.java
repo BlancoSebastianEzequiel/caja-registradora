@@ -37,12 +37,11 @@ public final class Open extends CashRegisterState {
 		return false;
 	}
 
-	public Sale initSale() {
-		return new Sale();
+	public Sale initSale(Adapter adapter) {
+		return new Sale(adapter);
 	}
 
-	public void addItemToCurrentSale(Sale sale, String item) {
-		sale.addItem(item);
-	}
+    public void canFinishSale() {}
 
+	public void canAddItemToCurrentSale() {}
 }

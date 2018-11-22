@@ -1,11 +1,12 @@
 package ar.fiuba.tdd.tp2;
 
 import ar.fiuba.tdd.tp2.offer_validator_client.*;
-import ar.fiuba.tdd.tp2.offer_validator_client.Rule;
+import ar.fiuba.tdd.tp2.offer_validator_client.AtomicRule;
 import ar.fiuba.tdd.tp2.offer_validator_client.Offer;
 import ar.fiuba.tdd.tp2.offer_validator_client.Product;
 import ar.fiuba.tdd.tp2.offer_validator_client.PurchaseDate;
 import ar.fiuba.tdd.tp2.offer_validator_client.Sale;
+import ar.fiuba.tdd.tp2.offer_validator_client.Rule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,10 +40,10 @@ public class Main {
     }
 
     private static List<Rule> getRules() {
-        Rule rule1 = new Rule("MES_SEPTIEMBRE", "EL MES ES SEPTIEMBRE",
+        AtomicRule rule1 = new AtomicRule("MES_SEPTIEMBRE", "EL MES ES SEPTIEMBRE",
                 "EQUALS","CALENDAR.month", "SEPTIEMBRE");
 
-        Rule rule2 = new Rule("PRODUCTO_LACTEO", "PRODUCTO ES CATEGORIA LACTEO",
+        AtomicRule rule2 = new AtomicRule("PRODUCTO_LACTEO", "PRODUCTO ES CATEGORIA LACTEO",
                 "EQUALS","PRODUCT.category.code", "X033AXX");
 
         return  Arrays.asList(rule1, rule2);
