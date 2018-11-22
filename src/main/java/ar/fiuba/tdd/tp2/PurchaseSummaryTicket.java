@@ -46,7 +46,7 @@ public class PurchaseSummaryTicket {
     }
 
     private String printDiscountTicket() {
-        String summaryTicket="Descripcion Descuento\n";
+        String summaryTicket="Descripcion codigoOferta Descuento\n";
         for(SaleResult result : this.discounts) {
             String description = result.getDescription();
             double discount = result.getDiscount();
