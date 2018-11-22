@@ -49,7 +49,7 @@ public class PurchaseSummaryTicketTest {
                 "AAR003 Gaseosa Cola 1 14.4\n" +
                 "AAR001 Leche Descremada 1L, la Calmisima 2 25.4\n" +
                 "Total: 65.2\n" +
-                "Descripcion Descuento\n" +
+                "Descripcion codigoOferta Descuento\n" +
                 "description1 offerCode1 10.0\n"+
                 "description2 offerCode2 10.0\n" +
                 "description3 offerCode3 10.0\n" +

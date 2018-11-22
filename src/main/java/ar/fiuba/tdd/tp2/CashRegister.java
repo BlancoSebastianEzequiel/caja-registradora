@@ -87,7 +87,7 @@ public class CashRegister implements CashRegisterInterface {
         this.currentSale.finishSale(method, bank);
         this.totalCash += this.currentSale.getTotal();
         double discount = this.currentSale.getTotalDiscount();
-        ControlTicket.getInstance().logShipment(this.totalCash, discount, "CASH");
+        ControlTicket.getInstance().logShipment(this.totalCash, discount, method);
     }
 
     public void addItemToCurrentSale(String item) {
@@ -102,7 +102,10 @@ public class CashRegister implements CashRegisterInterface {
 
     @Override
     public String getSummaryTicket() {
-      return this.currentSale.getSummaryTicket();
+        if(this.currentSale == null) {
+            return "Sorry!: We do not have a summary ticket";
+        }
+        return this.currentSale.getSummaryTicket();
     }
 
     public User getCashier() {

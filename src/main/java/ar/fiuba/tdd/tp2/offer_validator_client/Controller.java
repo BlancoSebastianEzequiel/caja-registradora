@@ -1,5 +1,5 @@
 package ar.fiuba.tdd.tp2.offer_validator_client;
-;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import retrofit2.Call;
