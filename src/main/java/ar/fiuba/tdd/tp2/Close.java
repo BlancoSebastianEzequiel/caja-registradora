@@ -38,11 +38,15 @@ public final class Close extends CashRegisterState {
 		return false;
 	}
 
-	public Sale initSale() {
+	public Sale initSale(Adapter adapter) {
 		throw new InvalidCashRegisterOperationException();
 	}
 
-    public void addItemToCurrentSale(Sale sale, String item) {
-        throw new InvalidCashRegisterOperationException();
+    public void canFinishSale() {
+	    throw new InvalidCashRegisterOperationException();
     }
+
+	public void canAddItemToCurrentSale() {
+		throw new InvalidCashRegisterOperationException();
+	}
 }

@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.tp2;
 
+import ar.fiuba.tdd.tp2.offer_validator_client.SaleResult;
+
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
@@ -7,70 +9,66 @@ import java.util.Set;
 public class PurchaseSummaryTicket {
 
     private List<Product> productList;
-    private Hashtable<String, Double> productDiscount;
+    private List<SaleResult> discounts;
     private Hashtable<String, ProductTicket> productQuantity;
+    private double total;
+    private double totalDiscount;
 
-    public PurchaseSummaryTicket (List<Product> productList, Hashtable<String, Double> productDiscount){
+    public PurchaseSummaryTicket (List<Product> productList,  List<SaleResult> discounts){
         this.productList = productList;
-        this.productDiscount = productDiscount;
+        this.discounts = discounts;
         this.productQuantity = new Hashtable<>();
+        this.totalDiscount = 0;
     }
 
-    public String printTicket (){
-        String plainTicket = printPlainTicket(productList);
-        String discountTicket = plainTicket + printDiscountTicket(productList);
-
-
-    return discountTicket;
-
+    public String printTicket () {
+        return printPlainTicket() + printDiscountTicket();
     }
 
-    private String printDiscountTicket(List<Product> productList) {
-        String summaryTicket="Nombre del producto   Descuento Total\n";
-        Double Total = 0.0;
-        Set<String> keys = productQuantity.keySet();
-        for(String currentProductCode : keys) {
-            Double disc = addDiscount(currentProductCode);
-            Total = Total +  this.productQuantity.get(currentProductCode).getPrice()*(1-disc)* this.productQuantity.get(currentProductCode).getQuantity();
-            summaryTicket = summaryTicket + this.productQuantity.get(currentProductCode).getName() + " " +  this.productQuantity.get(currentProductCode).getPrice() * disc *  this.productQuantity.get(currentProductCode).getQuantity()+"\n";
+    private String printDiscountTicket() {
+        String summaryTicket="Descripcion Descuento\n";
+        for(SaleResult result : this.discounts) {
+            String description = result.getDescription();
+            double discount = result.getDiscount();
+            String offerCode = result.getOffer_code();
+            this.total -= discount;
+            this.totalDiscount += discount;
+            summaryTicket = summaryTicket  + description + " " + offerCode + " " + discount + "\n";
         }
-        summaryTicket =  summaryTicket + "Total con descuento: " + Total + "\n";
+        summaryTicket =  summaryTicket + "Total con descuento: " + this.total + "\n";
         return summaryTicket;
     }
 
-    private String printPlainTicket (List<Product> productList){
-        String summaryTicket="Codigo Nombre    Cantidad  Precio\n";
+    private String printPlainTicket () {
+        String summaryTicket = "Codigo Nombre Cantidad Precio\n";
         Double subTotal = 0.0;
-        checkCuantities(productList);
+        this.checkCuantities(this.productList);
         Set<String> keys = productQuantity.keySet();
         for(String currentProductCode : keys) {
-            subTotal = subTotal + this.productQuantity.get(currentProductCode).getPrice() * this.productQuantity.get(currentProductCode).getQuantity();
-            summaryTicket = summaryTicket + this.productQuantity.get(currentProductCode).getCode()+" "+
-                    this.productQuantity.get(currentProductCode).getName() + " " +
-                    this.productQuantity.get(currentProductCode).getQuantity() + " " +
-                    this.productQuantity.get(currentProductCode).getPrice() + "\n";
+            Double price = this.productQuantity.get(currentProductCode).getPrice();
+            Integer quantity = this.productQuantity.get(currentProductCode).getQuantity();
+            String code = this.productQuantity.get(currentProductCode).getCode();
+            String name = this.productQuantity.get(currentProductCode).getName();
+            subTotal += price * quantity;
+            summaryTicket = summaryTicket + code + " " + name + " " + quantity + " " + price + "\n";
         }
-        summaryTicket = summaryTicket + "Total:" + subTotal + "\n";
-    return summaryTicket;
+        summaryTicket = summaryTicket + "Total: " + subTotal + "\n";
+        this.total = subTotal;
+        return summaryTicket;
     }
 
     private void checkCuantities(List<Product> productList) {
         for(Product currentProduct : productList) {
-            addQuantity(currentProduct);
+            this.addQuantity(currentProduct);
         }
-    }
-
-    private Double addDiscount(String currentProductCode) {
-        Double discount = 0.0;
-        if (this.productDiscount.containsKey(currentProductCode)) {
-            discount = productDiscount.get(currentProductCode);
-        }
-        return discount;
     }
 
     public void addQuantity(Product currentProduct) {
         if (!this.productQuantity.containsKey(currentProduct.getCode())) {
-            ProductTicket product = new ProductTicket(currentProduct.getCode(),1, currentProduct.getName(), currentProduct.getPrice());
+            String code = currentProduct.getCode();
+            String name = currentProduct.getName();
+            double price = currentProduct.getPrice();
+            ProductTicket product = new ProductTicket(code,1, name, price);
             this.productQuantity.put(currentProduct.getCode(), product);
         } else {
             this.productQuantity.get(currentProduct.getCode()).add();
@@ -79,5 +77,11 @@ public class PurchaseSummaryTicket {
 
     }
 
+    public double getTotal() {
+        return this.total;
+    }
 
+    public double getTotalDiscount() {
+        return this.totalDiscount;
+    }
 }

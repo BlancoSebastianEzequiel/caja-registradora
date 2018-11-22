@@ -7,7 +7,7 @@ public class ControlTicket {
 
     private static ControlTicket INSTANCE;
     private List<String> LOGGER;
-    private Hashtable<String, Integer> totalPaymentMethod;
+    private Hashtable<String, Double> totalPaymentMethod;
 
     public ControlTicket() {
         this.totalPaymentMethod = new Hashtable<>();
@@ -21,12 +21,12 @@ public class ControlTicket {
         return INSTANCE;
     }
 
-    private void sumTotalByPaymentMethod(String paymentMethod, Integer total) {
+    private void sumTotalByPaymentMethod(String paymentMethod, Double total) {
         if (!this.totalPaymentMethod.containsKey(paymentMethod)) {
             this.totalPaymentMethod.put(paymentMethod, total);
             return;
         }
-        Integer lastTotal = this.totalPaymentMethod.get(paymentMethod);
+        Double lastTotal = this.totalPaymentMethod.get(paymentMethod);
         this.totalPaymentMethod.put(paymentMethod, lastTotal+total);
     }
 
@@ -40,13 +40,13 @@ public class ControlTicket {
         }
     }
 
-    public void logShipment(Integer total, Integer discounts, String paymentMethod) {
+    public void logShipment(Double total, Double discounts, String paymentMethod) {
         if (total == null || discounts == null || paymentMethod == null) return;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Purchase made at: ");
         stringBuilder.append(this.getTimeStamp());
         stringBuilder.append(" - total price: ");
-        stringBuilder.append(total.toString());
+        stringBuilder.append(total);
         stringBuilder.append(" - Discount of: ");
         stringBuilder.append(discounts.toString());
         stringBuilder.append(" - Payment method: ");
@@ -55,7 +55,7 @@ public class ControlTicket {
         this.sumTotalByPaymentMethod(paymentMethod, total);
     }
 
-    void logCashRegisterTotalCash(Integer cash) {
+    void logCashRegisterTotalCash(double cash) {
         this.LOGGER.add("Cash register total cash: " + cash);
     }
 
