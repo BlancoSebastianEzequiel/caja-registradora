@@ -6,10 +6,13 @@ import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import ar.fiuba.tdd.tp2.CashRegister;
+
 public class TicketPanel extends Panel{
 
-    public TicketPanel(JFrame frame){
+    public TicketPanel(JFrame frame, CashRegister cash){
         this.window = frame;
+        this.cashReg = cash;
         panel.setLayout(null);
 
         JLabel textTitle = new JLabel("Ticket");

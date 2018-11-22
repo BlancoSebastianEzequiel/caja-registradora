@@ -22,6 +22,7 @@ public class ProductOffer {
         this.categoryName = (String) ((JSONObject) data.get("category")).get("name");
         this.ivaPorcentage = (Double) data.get("iva_porcentage");
         this.code = (String) data.get("code");
+        this.price = (Double) data.get("price");
     }
 
     public String getName() { return this.name; }

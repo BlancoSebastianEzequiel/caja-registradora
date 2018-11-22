@@ -12,14 +12,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import ar.fiuba.tdd.tp2.CashRegister;
+
 public class PaymentMethodDialog implements ActionListener {
 
     private JFrame window;
-    private JTable table;
+    private CashRegister cashReg;
 
-    public PaymentMethodDialog(JFrame frame, JTable table){
+    public PaymentMethodDialog(JFrame frame, CashRegister cash){
             this.window = frame;
-            this.table = table;
+            this.cashReg = cash;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class PaymentMethodDialog implements ActionListener {
         acceptButton.setBackground(new Color(53,131,199));
         acceptButton.setFocusPainted(false);
         acceptButton.setForeground(Color.white);
+        acceptButton.addActionListener(new FinishSaleListener(this.window, this.cashReg));
 
         panelDialog.add(paymentMethodText);
         panelDialog.add(paymentMethods);

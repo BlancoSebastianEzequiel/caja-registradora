@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp2.controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -13,7 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
+import org.json.simple.parser.ParseException;
+
 import ar.fiuba.tdd.tp2.CashRegister;
+import ar.fiuba.tdd.tp2.ProductsListOffer;
+import ar.fiuba.tdd.tp2.acceptance.ProductListOfferTest;
 
 public class AddProductDialogListener implements ActionListener {
 
@@ -35,25 +40,11 @@ public class AddProductDialogListener implements ActionListener {
         JPanel panelDialog = new JPanel();
         panelDialog.setLayout(null);
 
-        //Lista provisoria
-        String[] prod1 = {"Coca-Cola","42.35"};
-        String[] prod2 = {"Pepsi","39.20"};
-        String[] prod3 = {"Queso Descremado La Serenísima","27.15"};
-        ArrayList<String[]> products_list = new ArrayList<String[]>();
-        products_list.add(prod1);
-        products_list.add(prod2);
-        products_list.add(prod3);
-        //......//
+        JComboBox<String> products = new JComboBox<String>();
+        products.setBounds(25, 50, 350, 25);
 
         JLabel selectProductText = new JLabel("Seleccione el producto:");
         selectProductText.setBounds(25, 20, 350, 20);
-
-        JComboBox<String> products = new JComboBox<String>();
-        products.setBounds(25, 50, 350, 25);
-        
-        for(int i = 0; i < products_list.size(); i++){
-                products.addItem(products_list.get(i)[0]);
-        }
 
         JButton cancelButton = new  JButton("Cancelar");
         cancelButton.setBounds(265, 90, 100, 25);
@@ -67,7 +58,21 @@ public class AddProductDialogListener implements ActionListener {
         addButton.setBackground(new Color(53,131,199));
         addButton.setFocusPainted(false);
         addButton.setForeground(Color.white);
-        addButton.addActionListener(new AddProductListener(this.window, dialog, products_list, products, this.table, this.priceText));
+
+        ProductsListOffer productsList;
+        try {
+                productsList = new ProductsListOffer("products.json");
+                for(int i = 0; i < productsList.getProducts().size(); i++){
+                                products.addItem(productsList.getProducts().get(i).getName());
+                }
+                addButton.addActionListener(new AddProductListener(this.window, dialog, productsList, products, this.table, this.priceText, this.cashReg));
+        } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+        } catch (ParseException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+        }
 
         panelDialog.add(selectProductText);
         panelDialog.add(products);

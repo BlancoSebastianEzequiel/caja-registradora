@@ -49,7 +49,7 @@ public class ShoppingListSupervisorPanel extends Panel{
         String data[][] = {};
 
         botonDesconectar.addActionListener(new LogoutListener(this.window, this.cashReg, new LoginPanel(this.window, this.cashReg)));
-        botonVerTicket.addActionListener(new AccessPanelListener(this.window, new TicketPanel(this.window)));
+        botonVerTicket.addActionListener(new AccessPanelListener(this.window, new TicketPanel(this.window,this.cashReg)));
 
         //Avoid for the table is editable
         TableModel model = new DefaultTableModel(data, colNames){

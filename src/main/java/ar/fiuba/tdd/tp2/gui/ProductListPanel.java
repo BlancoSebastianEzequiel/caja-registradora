@@ -43,7 +43,7 @@ public class ProductListPanel extends Panel{
         botonAgregarProducto.setFocusPainted(false);
         botonAgregarProducto.setForeground(Color.white);
 
-        String colNames[] = {"Producto","Precio"};
+        String colNames[] = {"Producto","Código","Precio"};
         String data[][] = {};
         
         //Avoid for the table is editable
@@ -82,7 +82,7 @@ public class ProductListPanel extends Panel{
 
         botonAgregarProducto.addActionListener(new AddProductDialogListener(this.window, productList, priceText, this.cashReg));
         botonAgregarProducto.setMargin(new Insets(1,1,1,1));
-        botonCerrarCompra.addActionListener(new PaymentMethodDialog(this.window, productList));
+        botonCerrarCompra.addActionListener(new PaymentMethodDialog(this.window, this.cashReg));
 
         botonCancelarCompra.addActionListener(new AccessPanelListener(this.window, new ShoppingListCashierPanel(this.window, this.cashReg)));
         botonCancelarCompra.setMargin(new Insets(1,1,1,1));
