@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp2.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -12,7 +11,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import ar.fiuba.tdd.tp2.CashRegister;
-import ar.fiuba.tdd.tp2.Product;
 import ar.fiuba.tdd.tp2.ProductOffer;
 import ar.fiuba.tdd.tp2.ProductsListOffer;
 

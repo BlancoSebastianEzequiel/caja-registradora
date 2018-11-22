@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,7 +17,6 @@ import org.json.simple.parser.ParseException;
 
 import ar.fiuba.tdd.tp2.CashRegister;
 import ar.fiuba.tdd.tp2.ProductsListOffer;
-import ar.fiuba.tdd.tp2.acceptance.ProductListOfferTest;
 
 public class AddProductDialogListener implements ActionListener {
 
@@ -63,7 +61,7 @@ public class AddProductDialogListener implements ActionListener {
         try {
                 productsList = new ProductsListOffer("products.json");
                 for(int i = 0; i < productsList.getProducts().size(); i++){
-                                products.addItem(productsList.getProducts().get(i).getName());
+                        products.addItem(productsList.getProducts().get(i).getName());
                 }
                 addButton.addActionListener(new AddProductListener(this.window, dialog, productsList, products, this.table, this.priceText, this.cashReg));
         } catch (IOException e1) {

@@ -10,7 +10,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 
 import ar.fiuba.tdd.tp2.CashRegister;
 
@@ -51,7 +50,7 @@ public class PaymentMethodDialog implements ActionListener {
         acceptButton.setBackground(new Color(53,131,199));
         acceptButton.setFocusPainted(false);
         acceptButton.setForeground(Color.white);
-        acceptButton.addActionListener(new FinishSaleListener(this.window, this.cashReg));
+        acceptButton.addActionListener(new FinishSaleListener(this.window, this.cashReg, dialog));
 
         panelDialog.add(paymentMethodText);
         panelDialog.add(paymentMethods);

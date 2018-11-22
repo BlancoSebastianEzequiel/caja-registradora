@@ -102,7 +102,10 @@ public class CashRegister implements CashRegisterInterface {
 
     @Override
     public String getSummaryTicket() {
-      return this.currentSale.getSummaryTicket();
+        if(this.currentSale == null) {
+            return "Sorry!: We do not have a summary ticket";
+        }
+        return this.currentSale.getSummaryTicket();
     }
 
     public User getCashier() {

@@ -102,7 +102,8 @@ public class TicketPanel extends Panel{
         + "<tr><td><b>Fecha/hora cierre:</b></td><td>"
         + "UNKNOWN"
         + "</td></tr>"
-        + "</table></center>";
+        + "</table></center>"
+        + this.cashReg.getSummaryTicket();
 
         textTicket.setText(data);
         textTicket.setEditable(false);
