@@ -29,7 +29,7 @@ public class FinishSaleListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.cashReg.finishSale(this.payment.getSelectedItem().toString(), this.bank.getSelectedItem().toString());
-        TicketPanel panel = new TicketPanel(this.window, this.cashReg);
+        TicketPanel panel = new TicketPanel(this.window, this.cashReg, false, null, null);
 
         this.dialog.dispose();
         this.window.getContentPane().removeAll();

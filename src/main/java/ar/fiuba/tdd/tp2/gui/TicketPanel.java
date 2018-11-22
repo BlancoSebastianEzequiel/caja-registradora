@@ -7,10 +7,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
 import ar.fiuba.tdd.tp2.CashRegister;
+import ar.fiuba.tdd.tp2.controller.AccessPanelListener;
 
 public class TicketPanel extends Panel{
 
-    public TicketPanel(JFrame frame, CashRegister cash){
+    public TicketPanel(JFrame frame, CashRegister cash, boolean modoSupervisor, JTextField user, JTextField pass){
         this.window = frame;
         this.cashReg = cash;
         panel.setLayout(null);
@@ -23,87 +24,24 @@ public class TicketPanel extends Panel{
         botonAceptar.setBackground(new Color(53,131,199));
         botonAceptar.setFocusPainted(false);
         botonAceptar.setForeground(Color.white);
+        
+        if (modoSupervisor){
+            botonAceptar.addActionListener(new AccessPanelListener(this.window, new ShoppingListSupervisorPanel(this.window, this.cashReg, user, pass)));
+        } else {
+            botonAceptar.addActionListener(new AccessPanelListener(this.window, new ShoppingListCashierPanel(this.window, this.cashReg)));
+        }
+
+        String lines[] = this.cashReg.getSummaryTicket().split("\\r?\\n");
 
         JEditorPane textTicket = new JEditorPane();
         textTicket.setContentType("text/html");
 
-        String data = "<h2><center>Ticket de compra</center></h2>"
-        + "<br />"
-        + "<center><table width=\"700\" border=\"1\"><tr><td>"
-        + "<center><b>CUIT</b></center>" 
-        + "</td><td>"
-        + "<center><b>Razón social</b></center>"
-        + "</td><td>"
-        + "<center><b>Inicio de actividad</b></center>"
-        + "</td><td>"
-        + "<center><b>Fecha/hora</b></center>"
-        + "</td></tr>"
-        + "<tr><td><center>"
-        + "XXXXX"
-        + "</center></td><td><center>"
-        + "XXXXX"
-        + "</center></td><td><center>"
-        + "XXXXX"
-        + "</center></td><td><center>"
-        + "XXXXX"
-        + "</center></td></tr>"
-        + "</table></center>"
-        + "<br />"
-        + "<h3><center>Lista de productos comprados</center></h3>"
-        + "<center><table width=\"700\" border=\"1\"><tr><td>"
-        + "<center><b>Cantidad</b></center>" 
-        + "</td><td>"
-        + "<center><b>Código</b></center>"
-        + "</td><td>"
-        + "<center><b>Descripción del producto</b></center>"
-        + "</td><td>"
-        + "<center><b>Monto</b></center>"
-        + "</td></tr>"
-        + "<tr><td><center>"
-        + ""
-        + "</center></td><td><center>"
-        + ""
-        + "</center></td><td><center>"
-        + ""
-        + "</center></td><td><center>"
-        + ""
-        + "</center></td></tr>"
-        + "</table></center>"
-        + "<br />"
-        + "<h3><center>Descuentos aplicados</center></h3>"
-        + "<center><table width=\"700\" border=\"1\"><tr><td>"
-        + ""
-        + "</td></tr></table></center>"
-        + "<br />"
-        + "<center><table width=\"660\"><tr>"
-        + "<td><b>Total descuentos aplicados:</b></td><td>"
-        + "0"
-        + "</td></tr>"
-        + "<tr><td><b>Total a pagar:</b></td><td>"
-        + "0.00"
-        + "</td></tr>"
-        + "<tr><td><b>Forma de pago:</b></td><td>"
-        + "UNKNOWN"
-        + "</td></tr>"
-        + "<tr><td><b>Total de efectivo:</b></td><td>"
-        + "UNKNOWN"
-        + "</td></tr>"
-        + "<tr><td><b>Total cobrado por medio de pago:</b></td><td>"
-        + "UNKNOWN"
-        + "</td></tr></table></center>"
-        + "<br />"
-        + "<center><table width=\"660\"><tr>"
-        + "<td><b>Nombre del cajero:</b></td><td>"
-        + "UNKNOWN"
-        + "</td></tr>"
-        + "<tr><td><b>Fecha/hora apertura:</b></td><td>"
-        + "UNKNOWN"
-        + "</td></tr>"
-        + "<tr><td><b>Fecha/hora cierre:</b></td><td>"
-        + "UNKNOWN"
-        + "</td></tr>"
-        + "</table></center>"
-        + this.cashReg.getSummaryTicket();
+        String data = "<html>";
+        for (int i=0; i < lines.length; i++){
+            data = data + lines[i] + "<br />";
+        }
+
+        data = data + "</html>";
 
         textTicket.setText(data);
         textTicket.setEditable(false);
