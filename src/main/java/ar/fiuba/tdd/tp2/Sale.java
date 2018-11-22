@@ -20,10 +20,10 @@ public class Sale {
         this.purchaseDate = new PurchaseDate();
     }
 
-    public void finishSale() {
+    public void finishSale(String method, String bank) {
         try {
             List<Product> products = this.items.getProducts();
-            List<SaleResult> result = this.adapter.getDiscount(products, this.purchaseDate);
+            List<SaleResult> result = this.adapter.getDiscount(products, this.purchaseDate, method, bank);
             this.purchaseSummaryTicket = new PurchaseSummaryTicket(products, result, this.purchaseDate);
         } catch (IOException | ParseException | InterruptedException e) {
             throw new RuntimeException(e.getMessage());

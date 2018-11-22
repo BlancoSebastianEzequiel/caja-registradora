@@ -27,8 +27,8 @@ public class Adapter {
         }
     }
 
-    public List<SaleResult> getDiscount(List<ar.fiuba.tdd.tp2.Product> products, ar.fiuba.tdd.tp2.PurchaseDate purchaseDate) throws InterruptedException {
-        controller.processSale(new ProcessSale("hols", this.getSale(products, purchaseDate)));
+    public List<SaleResult> getDiscount(List<ar.fiuba.tdd.tp2.Product> products, ar.fiuba.tdd.tp2.PurchaseDate purchaseDate, String method, String bank) throws InterruptedException {
+        controller.processSale(new ProcessSale("hols", this.getSale(products, purchaseDate, method, bank)));
         Thread.sleep(10000);
         if (controller.getResults() == null) {
             throw new RuntimeException("ERROR: could not receive response from clojure");
@@ -36,8 +36,8 @@ public class Adapter {
         return controller.getResults();
     }
 
-    private Sale getSale(List<ar.fiuba.tdd.tp2.Product> products, ar.fiuba.tdd.tp2.PurchaseDate purchaseDate) {
-        Payment payment = new Payment("CREDIT","PARISIA");
+    private Sale getSale(List<ar.fiuba.tdd.tp2.Product> products, ar.fiuba.tdd.tp2.PurchaseDate purchaseDate, String method, String bank) {
+        Payment payment = new Payment(method, bank);
         return new Sale(this.getProducts(products), payment, this.getPurchaseDate(purchaseDate));
     }
 
