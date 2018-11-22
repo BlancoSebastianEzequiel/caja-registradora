@@ -11,19 +11,20 @@ public class Sale {
     private Items items;
     private PurchaseSummaryTicket purchaseSummaryTicket;
     private Adapter adapter;
+    private PurchaseDate purchaseDate;
 
 
     Sale(Adapter adapter) {
         this.adapter = adapter;
         this.items = new Items();
+        this.purchaseDate = new PurchaseDate();
     }
 
     public void finishSale() {
         try {
             List<Product> products = this.items.getProducts();
-            PurchaseDate purchaseDate = new PurchaseDate();
-            List<SaleResult> result = this.adapter.getDiscount(products, purchaseDate);
-            this.purchaseSummaryTicket = new PurchaseSummaryTicket(products, result);
+            List<SaleResult> result = this.adapter.getDiscount(products, this.purchaseDate);
+            this.purchaseSummaryTicket = new PurchaseSummaryTicket(products, result, this.purchaseDate);
         } catch (IOException | ParseException | InterruptedException e) {
             throw new RuntimeException(e.getMessage());
         }
