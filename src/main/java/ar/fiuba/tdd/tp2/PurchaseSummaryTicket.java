@@ -1,7 +1,9 @@
 package ar.fiuba.tdd.tp2;
 
 import ar.fiuba.tdd.tp2.offer_validator_client.SaleResult;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
@@ -13,16 +15,34 @@ public class PurchaseSummaryTicket {
     private Hashtable<String, ProductTicket> productQuantity;
     private double total;
     private double totalDiscount;
+    private PurchaseDate purchaseDate;
 
-    public PurchaseSummaryTicket (List<Product> productList,  List<SaleResult> discounts){
+    public PurchaseSummaryTicket (List<Product> productList,  List<SaleResult> discounts, PurchaseDate purchaseDate){
         this.productList = productList;
         this.discounts = discounts;
         this.productQuantity = new Hashtable<>();
         this.totalDiscount = 0;
+        this.purchaseDate = purchaseDate;
     }
 
     public String printTicket () {
-        return printPlainTicket() + printDiscountTicket();
+        try {
+            return this.getBusinessData() + printPlainTicket() + printDiscountTicket();
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private String getBusinessData() throws IOException, ParseException {
+        DataBusiness businessData = new DataBusiness("data.json");
+        String cuit = businessData.getCuit();
+        String businessName = businessData.getBusinessName();
+        Integer year = this.purchaseDate.getYear();
+        Integer dayNumber = this.purchaseDate.getDayNumber();
+        String month = this.purchaseDate.getMonth();
+        return "Cuit: " + cuit +
+                " razon social: " + businessName +
+                " inicio de actividad: " + dayNumber + " de " + month + " de " + year + "\n";
     }
 
     private String printDiscountTicket() {
