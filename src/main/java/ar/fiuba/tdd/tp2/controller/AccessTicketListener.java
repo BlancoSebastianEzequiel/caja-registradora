@@ -26,7 +26,6 @@ public class AccessTicketListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         TicketPanel panel = new TicketPanel(this.window, this.cashReg, true, this.user, this.pass);
-        this.cashReg.getControlTicket();
 
         this.window.getContentPane().removeAll();
         this.window.getContentPane().add(panel.getPanel());

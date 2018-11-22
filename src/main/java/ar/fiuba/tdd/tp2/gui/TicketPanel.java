@@ -24,14 +24,16 @@ public class TicketPanel extends Panel{
         botonAceptar.setBackground(new Color(53,131,199));
         botonAceptar.setFocusPainted(false);
         botonAceptar.setForeground(Color.white);
+
+        String lines[];
         
         if (modoSupervisor){
+            lines = this.cashReg.getControlTicket().split("\\r?\\n");
             botonAceptar.addActionListener(new AccessPanelListener(this.window, new ShoppingListSupervisorPanel(this.window, this.cashReg, user, pass)));
         } else {
+            lines = this.cashReg.getSummaryTicket().split("\\r?\\n");
             botonAceptar.addActionListener(new AccessPanelListener(this.window, new ShoppingListCashierPanel(this.window, this.cashReg)));
         }
-
-        String lines[] = this.cashReg.getSummaryTicket().split("\\r?\\n");
 
         JEditorPane textTicket = new JEditorPane();
         textTicket.setContentType("text/html");

@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import ar.fiuba.tdd.tp2.CashRegister;
-import ar.fiuba.tdd.tp2.controller.AccessPanelListener;
 import ar.fiuba.tdd.tp2.controller.AccessTicketListener;
 import ar.fiuba.tdd.tp2.controller.LogoutListener;
 import ar.fiuba.tdd.tp2.controller.OpenBoxListener;

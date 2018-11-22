@@ -35,7 +35,6 @@ public class OpenBoxListener implements ActionListener {
             this.window.getContentPane().add(shopListPanel.getPanel());
         } else {
             this.cashReg.close(this.user.getText(), this.pass.getText());
-            this.cashReg.getControlTicket();
 
             TicketPanel panel = new TicketPanel(this.window, this.cashReg, true, this.user, this.pass);
 
