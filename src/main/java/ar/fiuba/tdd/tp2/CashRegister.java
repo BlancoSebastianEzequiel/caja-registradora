@@ -82,9 +82,9 @@ public class CashRegister implements CashRegisterInterface {
         this.currentSale = this.state.initSale(this.adapter);
     }
 
-    public void finishSale() {
+    public void finishSale(String method, String bank) {
         this.state.canFinishSale();
-        this.currentSale.finishSale();
+        this.currentSale.finishSale(method, bank);
         this.totalCash += this.currentSale.getTotal();
         double discount = this.currentSale.getTotalDiscount();
         ControlTicket.getInstance().logShipment(this.totalCash, discount, "CASH");
