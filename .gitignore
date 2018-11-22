@@ -8,4 +8,5 @@ out/
 .project
 org.eclipse.jdt.core.prefs
 /bin/
+.attach_pid*
 

@@ -18,7 +18,7 @@
     "rule": {
       "type": "AND",
       "code": "PAGO_TARJETAS_NO_CAPRO",
-      "rule": ["PAGO_TARJETA_DEBITO_CREDITO", "NO_CAPRO"]
+      "rules": ["PAGO_TARJETA_DEBITO_CREDITO", "NO_CAPRO"]
     },
     "discount": {
       "type": "PERCENTAGE",
