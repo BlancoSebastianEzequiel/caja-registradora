@@ -53,7 +53,7 @@ public class SaleTest {
         cashRegister.addItemToCurrentSale("AAR004");
         cashRegister.addItemToCurrentSale("AAR005");
 
-        cashRegister.finishSale();
+        cashRegister.finishSale("CREDIT", "PARISIA");
     }
 
     @Test(expected = InvalidCashRegisterOperationException.class)
