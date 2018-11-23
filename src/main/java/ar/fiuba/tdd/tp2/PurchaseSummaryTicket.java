@@ -62,7 +62,7 @@ public class PurchaseSummaryTicket {
     private String printPlainTicket () {
         String summaryTicket = "Codigo Nombre Cantidad Precio\n";
         Double subTotal = 0.0;
-        this.checkCuantities(this.productList);
+        this.checkQuantities(this.productList);
         Set<String> keys = productQuantity.keySet();
         for(String currentProductCode : keys) {
             Double price = this.productQuantity.get(currentProductCode).getPrice();
@@ -77,7 +77,7 @@ public class PurchaseSummaryTicket {
         return summaryTicket;
     }
 
-    private void checkCuantities(List<Product> productList) {
+    private void checkQuantities(List<Product> productList) {
         for(Product currentProduct : productList) {
             this.addQuantity(currentProduct);
         }
@@ -98,10 +98,18 @@ public class PurchaseSummaryTicket {
     }
 
     public double getTotal() {
-        return this.total;
+        Double totalPrice = 0.0;
+        for (Product aProduct: this.productList) {
+            totalPrice += aProduct.getPrice();
+        }
+        return totalPrice;
     }
 
     public double getTotalDiscount() {
-        return this.totalDiscount;
+        Double totalDiscount = 0.0;
+        for (SaleResult aDiscount: this.discounts) {
+            totalDiscount += aDiscount.getDiscount();
+        }
+        return totalDiscount;
     }
 }
