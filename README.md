@@ -3,7 +3,7 @@
 ## levantar servidor
 
 ```
-$ cd cd offers_validator
+$ cd offers_validator
 $ lein deps
 $ lein ring server-headless
 ```
