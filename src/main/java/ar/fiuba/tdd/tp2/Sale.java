@@ -25,6 +25,7 @@ public class Sale {
             List<Product> products = this.items.getProducts();
             List<SaleResult> result = this.adapter.getDiscount(products, this.purchaseDate, method, bank);
             this.purchaseSummaryTicket = new PurchaseSummaryTicket(products, result, this.purchaseDate);
+            ControlTicket.getInstance().logShipment(this.getTotal(), this.getTotalDiscount(), method);
         } catch (IOException | ParseException | InterruptedException e) {
             throw new RuntimeException(e.getMessage());
         }
