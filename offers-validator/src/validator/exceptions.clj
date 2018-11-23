@@ -6,7 +6,7 @@
 )
 
 
-(def invalid_fields ["INVALID_METHOD" "NO_ONE"])
+(def invalid_fields ["INVALID_METHOD"])
 
 (defmulti check_field
   (fn [field msg] (.contains invalid_fields field))
